@@ -1,10 +1,12 @@
 // import axios from 'axios';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 
 const RegistrationForm = props => {
     const history = useHistory();
+    const { user, setUser } = useContext(UserContext)
 
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
@@ -76,8 +78,9 @@ const RegistrationForm = props => {
         event.preventDefault();
 
         axios.post(`http://localhost:8000/api/create/user`,form).then(response=>{
-            localStorage.setItem('name', form.firstName);
-            history.push("/pirates"); 
+            localStorage.setItem('userID', response.data.createdUser._id);
+            console.log('name', response.data.createdUser.firstName);
+            setUser({ id:response.data.createdUser._id, name:response.data.createdUser.firstName })
         })
         .catch(err => {
             setDBError(err.response.data.error.errors)

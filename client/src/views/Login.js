@@ -9,6 +9,7 @@ const Login = (props) => {
                 <h2>Login</h2>
                 <RegistrationForm />
             </div>
+            
             <div className="col-2">
                 <h2>Welcome Back</h2>
                 <WelcomeForm />

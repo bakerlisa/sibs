@@ -8,7 +8,7 @@ const Error = (props) => {
             <h1>Huh...?</h1>
             <img src={confused} alt="confused gif" />
             <p>Too much rum. Would like to add this Pirate?</p>
-            <Link to="/createPirate" className="button-lg">Create Pirate</Link>
+            <Link to="/" className="button-lg">Home</Link>
         </div>
     )
 }
