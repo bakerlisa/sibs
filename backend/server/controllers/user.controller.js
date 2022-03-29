@@ -1,0 +1,44 @@
+const User = require('../models/User.model');
+
+// FIND
+module.exports.allUsers = (req, res) => {
+    User.find()
+        .then(allDaUsers => res.json({ users: allDaUsers }))
+        .catch(err => res.status(400).json({ message: 'Something went wrong finding all products', error: err }));
+}
+
+module.exports.singleUser = (req,res) => {
+    User.findOne({_id: req.params.id})
+    .then(singleUserInfo => res.json({ user: singleUserInfo}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
+}
+
+module.exports.editUser = (req,res) => {
+    User.findOneAndUpdate({_id: req.params.id},
+        req.body,
+        { new: true, runValidators: true })
+    .then(updateUser=> res.json({ updatedUser: updateUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
+}
+
+module.exports.loginUser = (req,res) => {
+    User.find({ email: req.body.email, password: req.body.password },
+        req.body,
+        { new: true, runValidators: true })
+    .then(foundUser=> res.json({ userFound: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+}
+
+// CREATE
+module.exports.createUser = (req,res) => {
+    User.create(req.body)
+    .then(newUser => res.json({ createdUser: newUser }))
+    .catch(err => res.status(400).json({ message: 'Something went wrong creating new product', error: err }));
+}
+
+// DELETE
+module.exports.deleteUser = (req,res) => {
+    User.deleteMany({_id: req.params.id})
+    .then(result => res.json({ result: result}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong when deleting product', error: err }));
+}

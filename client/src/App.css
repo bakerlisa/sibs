@@ -36,3 +36,75 @@
     transform: rotate(360deg);
   }
 }
+/* ======================================= 
+GLOBAL STYLES 
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,500;0,700;1,400&display=swap');
+
+:root{
+  --white:#fff;
+  --black:#2d2d2d;
+  --blue:#033E8C;
+    --md_blue:#6387A6;
+    --lt_blue:#DCE6F2;
+  --green:#006600;
+  --pink:#E3CBCE;
+  --yellow:#F3D09B;
+  --brown:#3a1605;
+  --red:#BF0404;
+  --gray:#c4c4c4;
+    --dk_gray:#3D5473;
+}
+
+h1{font-size: 65px;}
+
+*{box-sizing: border-box; font-family: 'Fira Sans', sans-serif;}
+
+.App {text-align: center;}
+
+/* allPirated */
+.allPirates{display: flex;align-items: start;justify-content: center; flex-wrap: wrap; margin: 50px 0;}
+
+/* BUTTON */
+.button-lg{background-color:var(--blue); padding: 25px 40px; display: inline-block; text-decoration: none;color:var(--white); text-transform: uppercase; margin-bottom: 25px; border:solid 2px var(--blue); transition: all .25s ease-out;}
+  .button-lg:hover{cursor: pointer; background-color: transparent; transition: all .25s ease-out; color:var(--blue);}
+  /* CANCLE */
+  .cancle{background-color:var(--gray); display: block; text-decoration: none; text-transform: uppercase; max-width: 600px; margin: 10px auto 0 auto; color:var(--white); padding: 15px; font-size: 14px;}
+  /* EDIT */
+  .edit{text-transform: uppercase; padding: 15px; font-size: 16px; display: block; text-decoration: none;font-weight: 600; letter-spacing: 1px; background-color:var(--md_blue); max-width: 200px; color:var(--white); margin: 0 auto; border: solid 2px var(--md_blue); transition: all .25s ease-out;}
+  .edit:hover{transition: all .25s ease-out; background-color: transparent; color:var(--md_blue);}
+/* CONTAINER */
+.container{max-width: 1200px; margin: 0 auto;}
+
+/* FOOTER */
+footer{background-color:var(--black); padding: 50px; color:var(--whtie);}
+
+/* FORM */
+form{max-width: 600px; margin: 0 auto;}
+form label{display: block;text-align-last: left; font-weight: 600;}
+form input,form select{width: 100%; padding: 10px;}
+  form input:focus,form select:focus{outline: none; border: solid 2px var(--green);}
+form .checkbox{display: flex;align-items: center;justify-content: start;flex-wrap: wrap; margin: 20px 0;}
+form .checkbox input{width: 25px;margin: 0; height: 18px; width: 18px; margin-left: 15px;}
+form .submit{background-color:var(--green); color:var(--white); text-transform: uppercase; font-weight: 400; letter-spacing: 1px; border: none;; padding: 15px;}
+form .submit:hover{cursor: pointer; opacity: .75;}
+  input .disabled{background-color:var(--red); opacity: 0.25;}
+  /* validations */
+  form > div{ margin-bottom: 20px;}
+  form > div > span{text-align-last: left;}
+  input + span,textarea + span,select + span{display: block; max-height:0; height:100%; overflow: hidden; transition: all .2s ease-in;}
+  input:focus + span,textarea:focus + span,select:focus + span{color:var(--red); max-height:50px; transition: all .2s ease-in;}
+
+  /* Database Errors */
+  .errWrp{ color:var(--red);}
+  .errWrp h4{margin:0 ;}
+/* NAV */
+nav{text-align: right; padding: 25px 50px; background-color:var(--black); border-bottom: solid 1px var(--pink);}
+nav a,nav > div{color:var(--pink); padding: 0 10px; text-decoration: none; font-weight: 600; display: inline;}
+nav a:hover, nav > div:hover{cursor: pointer; color:var(--white);}
+
+/* NAV */
+nav{text-align: right; padding: 25px 50px; background-color:var(--black); border-bottom: solid 1px var(--white);}
+nav a{color:var(--white); padding: 0 10px; text-decoration: none; font-weight: 600;}
+nav a:hover{color:var(--white);}
