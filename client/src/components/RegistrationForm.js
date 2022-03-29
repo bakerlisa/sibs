@@ -8,6 +8,7 @@ const RegistrationForm = props => {
     // const history = useHistory();
     const { user, setUser } = useContext(UserContext)
 
+    const [message,setMessage] = useState("")
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
     
@@ -78,11 +79,19 @@ const RegistrationForm = props => {
 
     const onSubmitHandlerWelcome = (event) =>{
         event.preventDefault();
+        //check to make sure the email is unique
+        
+            axios.post('http://localhost:8000/api/email',form).then(response=>{
+                if(response.data.user.length > 0){
+                    setMessage("Email already exsists, please choose a different email")
+                }else{
+                    axios.post('http://localhost:8000/api/create/user',form).then(response=>{
+                        setUser(response.data.user._id)
+                        localStorage.setItem('userID', response.data.user._id);
+                    })
+                }
+            })
 
-        axios.post('http://localhost:8000/api/create/user',form).then(response=>{
-            setUser(response.data.createdUser._id)
-            localStorage.setItem('userID', response.data.createdUser._id);
-        })
         .catch(err => {
             setDBError(err.response.data.error.errors)
         });
@@ -94,6 +103,9 @@ const RegistrationForm = props => {
                 <div className="errWrp">
                     {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
+                    }
+                    {
+                        message.length > 1 ? message : ""
                     }
                 </div>
 

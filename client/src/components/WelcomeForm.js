@@ -1,10 +1,14 @@
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext,useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 
 const WelcomeForm = props => {
     const history = useHistory();
+    const { user, setUser } = useContext(UserContext)
+    const [errMessage, setErrMessage] = useState(" ")
+    
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
     
@@ -45,14 +49,15 @@ const WelcomeForm = props => {
     
     const onSubmitHandler = (event) =>{
         event.preventDefault();
-
-        axios.get(`http://localhost:8000/api/login`,login).then(response=>{
-            localStorage.setItem('id', response.data.userFound.id);
-
-            console.log(response.data.userFound)
+        axios.post('http://localhost:8000/api/login',login).then(response=>{
+            if(response.data.user.length <= 0){
+                setErrMessage("Credeitnals don't match, try again")
+            }else{
+                localStorage.setItem('userID', response.data.user[0]._id);
+                setUser(response.data.user[0]._id)
+            }
         })
         .catch(err => {
-            console.log(err.response.statusText)
             setDBError(err.response.data.error.errors)
         });
     }
@@ -63,6 +68,10 @@ const WelcomeForm = props => {
                 <div className="errWrp">
                     {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
+                    }
+
+                    {
+                        errMessage.length > 1 ? errMessage : ""
                     }
                 </div>
 
@@ -82,7 +91,6 @@ const WelcomeForm = props => {
                     }
                 </div>
 
-                
                 {
                     Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Login" className="submit" /> : <input type="submit" value="Login" disabled className="disabled" />
                 }

@@ -10,7 +10,6 @@ import Login from './views/Login';
 function App() {
   const [user,setUser] = useState("");
   const userIDs = localStorage.getItem('userID');
-  localStorage.setItem('id', 'Tom');
   
 
   useEffect(() => {
