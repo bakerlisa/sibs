@@ -21,10 +21,10 @@ module.exports.editUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
 }
 
-module.exports.loginUser = (req,res) => {
-    User.find({ email: req.body.email, password: req.body.password})
-    .then(foundUser => res.json({ user: foundUser}))
-    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+module.exports.editUseimageUploadr = (req,res) => {
+    User.findOneAndUpdate({_id: req.body.id})
+    .then(updateUser=> res.json({ user: updateUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
 }
 
 module.exports.EmailUser = (req,res) => {
