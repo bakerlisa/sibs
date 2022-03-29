@@ -11,7 +11,7 @@ const Header = (props) => {
             {
                 userIDs ?  <nav>
                     <Link to="/">Home</Link>
-                    <Link to="/add">Add</Link>
+                    <Link to="/Find">Find</Link>
                     <Link to="/settings">Settings</Link>
                     <Logout />
                 </nav>  : ""

@@ -11,19 +11,17 @@ import Dashboard from './views/Dashboard';
 import Error from './views/Error';
 import Login from './views/Login';
 import Settings from './views/Settings';
-import Add from './views/Add';
+import Find from './views/Find';
 
 function App() {
   const [user,setUser] = useState({});
   const userIDs = localStorage.getItem('userID');
-  
 
   useEffect(() => {
-    console.log(userIDs)
       axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
           setUser(response.data.user)
         })
-  }, [userIDs]);
+  }, [userIDs,user]);
 
   return (
     <div className="App">
@@ -43,14 +41,14 @@ function App() {
 
         {/* Settings */}
         <Route exact path="/settings">
-          <UserContext.Provider value={{ user, setUser,userIDs }}>
+          <UserContext.Provider value={{ user, setUser, userIDs }}>
             <Settings />
           </UserContext.Provider>
         </Route>
 
         {/* Add Fmaily Member */}
         <Route exact path="/add">
-          <Add />
+          <Find />
         </Route>
 
         {/* ERROR/404 routes */}

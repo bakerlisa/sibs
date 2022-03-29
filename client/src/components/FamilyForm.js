@@ -1,28 +1,27 @@
 // import axios from 'axios';
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 
-const RegistrationForm = props => {
+const FamilyForm = props => {
     // const history = useHistory();
-    const { user, setUser } = useContext(UserContext)
+    const { user, setUser, userIDs } = useContext(UserContext)
+    const fileInput = useRef(null);
 
     const [message,setMessage] = useState("")
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
-    
-    const [form,setForm] = useState({
-        same:true 
-    })
+    const [form,setForm] = useState({})
+    const [imageError,setImageError] = useState("")
 
     const [error,setError] = useState({
-        firstName: false,
-        lastName: false,
-        email: false,
-        address:false,
-        password: false,
-        confirmPassword: false
+        firstName: true,
+        lastName: true,
+        email: true,
+        address:true,
+        password: true,
+        confirmPassword: true
     })
 
     const lengths = {
@@ -51,16 +50,6 @@ const RegistrationForm = props => {
         }
     }
 
-    const onConfirmPasswordHandler = (event) => {
-        setForm({...form,[event.target.name]: event.target.value})
-
-        if(form.password === event.target.value){
-            setError({...error, confirmPassword: true})
-        }else{
-            setError({...error, confirmPassword: false})
-        }
-    }
-
     const onChangeHandlerWelcome = (event) => {
         setForm({...form,[event.target.name]: event.target.value})
         
@@ -77,25 +66,31 @@ const RegistrationForm = props => {
         setForm({...form,[event.target.name]: event.target.checked})
     }
 
+    const onImageHandlerWelcome = (event) => {
+        console.log(event.target.files[0])
+        if (event.target.files[0].size > 1024){
+            setImageError("File size cannot exceed more than 1MB");
+        }else{
+            setForm({...form,[event.target.name]: event.target.files[0]})
+        };
+
+    }
+
     const onSubmitHandlerWelcome = (event) =>{
-        event.preventDefault();
-        //check to make sure the email is unique
-        
-            axios.post('http://localhost:8000/api/email',form).then(response=>{
-                if(response.data.user.length > 0){
-                    setMessage("Email already exsists, please choose a different email")
-                }else{
-                    axios.post('http://localhost:8000/api/create/user',form).then(response=>{
-                        localStorage.setItem('userID', response.data.user._id);
-                        setUser(response.data.user)
-                    })
-                }
-            })
+        event.preventDefault();   
+
+        axios.patch(`http://localhost:8000/api/update/user/${userIDs}`).then(response=>{
+            console.log("Complete")
+        })
 
         .catch(err => {
             setDBError(err.response.data.error.errors)
         });
     }
+
+    useEffect(() => {
+        setForm(user)
+    }, [userIDs]);
 
     return(
         <>
@@ -159,18 +154,16 @@ const RegistrationForm = props => {
                         error.password ? "" : <span>Please enter a password</span>
                     }
                 </div>
-
                 <div>
-                    <label htmlFor="confirmPassword">Confirm Password: </label>
-                    <input type="password"  name="confirmPassword" value={form.confirmPassword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} />
+                    <label htmlFor="image">Image:</label>
+                    <input type="file" name="image" onChange={onImageHandlerWelcome} />
                     {
-                        error.confirmPassword ? "" : <span>Passwords must match</span>
+                        imageError.length > 0 ? <span>{imageError}</span> : ""
                     }
                 </div>
-
                 
                 {
-                    Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Create Account" className="submit" /> : <input type="submit" value="Create Account" disabled className="disabled" />
+                    Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Update Account" className="submit" /> : <input type="submit" value="Update Account" disabled className="disabled" />
                 }
 
             </form>
@@ -178,4 +171,4 @@ const RegistrationForm = props => {
     )
 }
 
-export default RegistrationForm;
+export default FamilyForm;

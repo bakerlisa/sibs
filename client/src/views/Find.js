@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Add = (props) => {
+const Find = (props) => {
     return(
         <div>
             Add Family Memeber
@@ -8,4 +8,4 @@ const Add = (props) => {
     )
 }
 
-export default Add;
+export default Find;

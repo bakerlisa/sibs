@@ -59,6 +59,10 @@ const UserSchema = new mongoose.Schema({
     other:{
         type: Array
     },
+    image:{
+        type: String,
+        default: "empty.jpg"
+    },
     loggedIn:{
         type: Boolean,
         default:false
