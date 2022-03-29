@@ -60,7 +60,8 @@ const UserSchema = new mongoose.Schema({
         type: Array
     },
     loggedIn:{
-        type: Boolean
+        type: Boolean,
+        default:false
     }
 },{timestamps:true});
 

@@ -4,7 +4,9 @@ import WelcomeForm from '../components/WelcomeForm';
 
 const Login = (props) => {
     return(
-        <div>
+        <div >
+            <h1>Sibs</h1>
+            <p>An easy way to keep track of all your family members!</p>
             <div className="col-2">
                 <h2>Login</h2>
                 <RegistrationForm />

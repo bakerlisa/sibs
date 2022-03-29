@@ -58,6 +58,7 @@ GLOBAL STYLES
 }
 
 h1{font-size: 65px;}
+h1 span{text-transform: capitalize;}
 
 *{box-sizing: border-box; font-family: 'Fira Sans', sans-serif;}
 

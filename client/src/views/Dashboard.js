@@ -1,18 +1,14 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
 const Dashboard = (props) => {
+    const { user, setUser, userIDs } = useContext(UserContext)
 
-    const [ allUsers,setAllUsers ] = useState({})
-
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/users').then(response=>{
-            setAllUsers(response.data)
-        })
-    }, []);
     return(
         <div>
-            Dashboard
+            {
+                userIDs ?  <h1>Welcome Back <span> {user.firstName} </span></h1> : ""
+            }
         </div>
     )
 }

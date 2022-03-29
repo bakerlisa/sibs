@@ -4,16 +4,19 @@ import UserContext from '../context/UserContext';
 import Logout from './Logout';
 
 const Header = (props) => {
-    const {user,setUser} = useContext(UserContext)
+    const { user,setUser,userIDs } = useContext(UserContext)
 
     return(
-        <nav>
-        <Link to="/">Home</Link>
-        
-        {
-            user.length === 0 ? "" : <Logout />
-        }
-        </nav>
+        <>
+            {
+                userIDs ?  <nav>
+                    <Link to="/">Home</Link>
+                    <Link to="/add">Add</Link>
+                    <Link to="/settings">Settings</Link>
+                    <Logout />
+                </nav>  : ""
+            }
+        </>
     )
 }
 

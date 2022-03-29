@@ -86,7 +86,7 @@ const RegistrationForm = props => {
                     setMessage("Email already exsists, please choose a different email")
                 }else{
                     axios.post('http://localhost:8000/api/create/user',form).then(response=>{
-                        setUser(response.data.user._id)
+                        setUser(response.data.user)
                         localStorage.setItem('userID', response.data.user._id);
                     })
                 }
