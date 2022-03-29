@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import ImageUploader from './ImageUploader.js';
 
 const FamilyForm = props => {
     // const history = useHistory();
@@ -13,7 +14,6 @@ const FamilyForm = props => {
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
     const [form,setForm] = useState({})
-    const [imageError,setImageError] = useState("")
 
     const [error,setError] = useState({
         firstName: true,
@@ -66,21 +66,12 @@ const FamilyForm = props => {
         setForm({...form,[event.target.name]: event.target.checked})
     }
 
-    const onImageHandlerWelcome = (event) => {
-        console.log(event.target.files[0])
-        if (event.target.files[0].size > 1024){
-            setImageError("File size cannot exceed more than 1MB");
-        }else{
-            setForm({...form,[event.target.name]: event.target.files[0]})
-        };
-
-    }
-
     const onSubmitHandlerWelcome = (event) =>{
         event.preventDefault();   
 
         axios.patch(`http://localhost:8000/api/update/user/${userIDs}`).then(response=>{
             console.log("Complete")
+            console.log(response.data.user)
         })
 
         .catch(err => {
@@ -94,6 +85,11 @@ const FamilyForm = props => {
 
     return(
         <>
+            <div>
+                <h2>Iamge Upload</h2>
+                <ImageUploader />
+            </div>
+
             <form onSubmit={onSubmitHandlerWelcome} >
                 <div className="errWrp">
                     {
@@ -154,14 +150,7 @@ const FamilyForm = props => {
                         error.password ? "" : <span>Please enter a password</span>
                     }
                 </div>
-                <div>
-                    <label htmlFor="image">Image:</label>
-                    <input type="file" name="image" onChange={onImageHandlerWelcome} />
-                    {
-                        imageError.length > 0 ? <span>{imageError}</span> : ""
-                    }
-                </div>
-                
+
                 {
                     Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Update Account" className="submit" /> : <input type="submit" value="Update Account" disabled className="disabled" />
                 }
