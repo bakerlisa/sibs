@@ -11,6 +11,9 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Last name is required"],
         minlength: [3, "Last name needs to be at least 3 characters"]
     },
+    madian:{
+        type: String
+    },
     email: {
         type: String,
         required: [true, "Eamil is required"]
@@ -31,6 +34,9 @@ const UserSchema = new mongoose.Schema({
     siblings:{
         type: Array
     },
+    spouse:{
+        type: Array
+    },
     parents:{
         type: Array
     },
@@ -41,6 +47,9 @@ const UserSchema = new mongoose.Schema({
         type:Array
     },
     stepParents:{
+        type: Array
+    },
+    other:{
         type: Array
     },
     loggedIn:{
