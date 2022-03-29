@@ -17,22 +17,20 @@ module.exports.editUser = (req,res) => {
     User.findOneAndUpdate({_id: req.params.id},
         req.body,
         { new: true, runValidators: true })
-    .then(updateUser=> res.json({ updatedUser: updateUser}))
+    .then(updateUser=> res.json({ user: updateUser}))
     .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
 }
 
 module.exports.loginUser = (req,res) => {
-    User.find({ email: req.body.email, password: req.body.password },
-        req.body,
-        { new: true, runValidators: true })
-    .then(foundUser=> res.json({ userFound: foundUser}))
+    User.find({ email: req.body.email, password: req.body.password})
+    .then(foundUser => res.json({ user: foundUser}))
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
 // CREATE
 module.exports.createUser = (req,res) => {
     User.create(req.body)
-    .then(newUser => res.json({ createdUser: newUser }))
+    .then(newUser => res.json({ user: newUser }))
     .catch(err => res.status(400).json({ message: 'Something went wrong creating new product', error: err }));
 }
 
