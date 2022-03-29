@@ -8,15 +8,16 @@ import Error from './views/Error';
 import Login from './views/Login';
 
 function App() {
-  const [user,setUser] = useState({});
+  const [user,setUser] = useState("");
   const userIDs = localStorage.getItem('userID');
+  localStorage.setItem('id', 'Tom');
   
-  console.log()
+
   useEffect(() => {
     if(userIDs){
-      setUser({...user,userIDs})
+      setUser(userIDs)
     }
-  }, [userIDs]);
+  }, [userIDs,user]);
 
   return (
     <div className="App">
@@ -29,7 +30,7 @@ function App() {
         <Route exact path="/">
           <UserContext.Provider value={{ user, setUser }}>
           {
-            user.length === undefined ? <Login /> : <Dashboard />
+            user.length === 0 ? <Login /> : <Dashboard />
           }
           </UserContext.Provider>
         </Route>

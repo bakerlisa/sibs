@@ -9,10 +9,9 @@ const Header = (props) => {
     return(
         <nav>
         <Link to="/">Home</Link>
-        { user.length }
-
+        
         {
-            user.length === undefined ? <Logout /> : ""
+            user.length === 0 ? "" : <Logout />
         }
         </nav>
     )

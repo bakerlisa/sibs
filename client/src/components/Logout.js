@@ -5,7 +5,7 @@ const Logout = (props) => {
     const { user, setUser } = useContext(UserContext)
 
     const logout = (event) => {
-        setUser({ })
+        setUser("")
         localStorage.clear();
     }
 
