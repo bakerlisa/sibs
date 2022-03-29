@@ -77,10 +77,10 @@ const RegistrationForm = props => {
     const onSubmitHandlerWelcome = (event) =>{
         event.preventDefault();
 
-        axios.post(`http://localhost:8000/api/create/user`,form).then(response=>{
-            localStorage.setItem('userID', response.data.createdUser._id);
+        axios.post('http://localhost:8000/api/create/user',form).then(response=>{
+            // localStorage.setItem('userID', response.data.createdUser._id);
             console.log('name', response.data.createdUser.firstName);
-            setUser({ id:response.data.createdUser._id, name:response.data.createdUser.firstName })
+            // setUser({ id:response.data.createdUser._id, name:response.data.createdUser.firstName })
         })
         .catch(err => {
             setDBError(err.response.data.error.errors)
@@ -116,13 +116,14 @@ const RegistrationForm = props => {
                     <label htmlFor="address">Living Address: </label>
                     <input type="text"  name="address" value={form.address} placeholder="Address" onChange={onChangeHandlerWelcome} />
                     {
-                        error.lastName ? "" : <span>Please enter a last name</span>
+                        error.address ? "" : <span>Please enter an address</span>
                     }
                 </div>
                 <div>
                     <label htmlFor="same">Mailing Addresss Same: </label>
                     <input type="checkbox"  defaultChecked="checked" name="same" value={form.mailing} onChange={onCheckboxHandlerWelcome} />
                 </div>
+
                 {
                     form.same === false ? <div>
                         <label htmlFor="mailing">Mailing Address: </label>
@@ -130,7 +131,6 @@ const RegistrationForm = props => {
                     </div> : ""
                 }
                 
-
                 <div>
                     <label htmlFor="email">Email: </label>
                     <input type="email"  name="email" value={form.email} placeholder="Email" onChange={ValidateEmail} />
