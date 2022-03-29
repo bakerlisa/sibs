@@ -31,6 +31,13 @@ const UserSchema = new mongoose.Schema({
         minlength: [8, "address needs to be at least 8 characters"],
         required: [true, "address is required"]
     },
+    same:{
+        type: Boolean
+    },
+    mailing:{
+        type: String,
+        default: true
+    },
     siblings:{
         type: Array
     },
