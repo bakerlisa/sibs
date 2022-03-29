@@ -27,6 +27,14 @@ module.exports.loginUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
+module.exports.EmailUser = (req,res) => {
+    User.find({ email: req.body.email })
+    .then(foundUser => res.json({ user: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+}
+
+
+
 // CREATE
 module.exports.createUser = (req,res) => {
     User.create(req.body)
