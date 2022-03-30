@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LoaclStrategy = require('passport-local').Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
-const User = require('./User');
+const User = require('./models/User.model');
 
 const cookieExtractor = req => {
     let token = null;
@@ -14,7 +14,8 @@ const cookieExtractor = req => {
 // authorization : protecting resources, endpoints
 passport.use(new JwtStrategy({
     jwtFromRequest: cookieExtractor,
-    secretOrKey: "noobcoder";
+    secretOrKey: "noobcoder"
+
 }, (payload,done) => {
     User.findById({ _id : payload.sub},(err,user) =>{{
         if(err)
@@ -27,7 +28,7 @@ passport.use(new JwtStrategy({
 }));
 
 // authrnetication local stragety using email and password (login)
-passport.use(new localStorage((email,password,done) => {
+passport.use(new LoaclStrategy((email,password,done) => {
     User.findOne({email},(err,user)=>{
         if(err)
             return done(err);
