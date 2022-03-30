@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
-const bcrypt = require('bcrypt');
+
 
 const RegistrationForm = props => {
     // const history = useHistory();
@@ -12,6 +12,7 @@ const RegistrationForm = props => {
     const [message,setMessage] = useState("")
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
+
     
     const [form,setForm] = useState({
         same:true 
