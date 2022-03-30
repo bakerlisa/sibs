@@ -49,7 +49,9 @@ function App() {
 
         {/* Add Fmaily Member */}
         <Route exact path="/find">
-          <Find />
+          <UserContext.Provider value={{ user, setUser, userIDs }}>
+            <Find />
+          </UserContext.Provider>
         </Route>
 
         {/* ERROR/404 routes */}

@@ -44,7 +44,6 @@ const AddChild = (props) => {
         //check with 2 parents
         setChild({...child,parents:parentID})
         axios.post(`http://localhost:8000/api/create/child`,child).then(response=>{
-            console.log(response.data.child._id)
             if(response.data.child.length > 1){
                 setMessage("Hmm...something went awry. Try again")
             }else{

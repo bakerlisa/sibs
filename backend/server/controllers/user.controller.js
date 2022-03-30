@@ -1,11 +1,6 @@
 const User = require('../models/User.model');
 
-const signToken = (userID) => {
-    return JWT.sign({
-        iss: "noobcoder",
-        sub: userID
-    }, "noobcoder",{expiresIn: "5000"});
-}
+
 
 // FIND
 module.exports.allUsers = (req, res) => {
@@ -28,41 +23,21 @@ module.exports.editUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
 }
 
+//Validates username and password
 module.exports.loginUser = (req,res) => {
-    if(req.isAuthenticated()){
-        const {_id, email} = req.user
-        const token = signToken(_id);
-        res.cookie('access_token',token,{httpOnly: true, sameSite:true})
-        res.status(200).json({isAuthenticated: true, user: {email}} );
-    }
+    User.find({ email: req.body.email, password: req.body.password})
+    .then(foundUser => res.json({ user: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
-// module.exports.loginUser = (req,res) => {
-//     const {email,password} = req.body;
-//     User.findOne({email}, (err,user) => {
-//         if(err)
-//             res.status(500).json({message: {msgbody: "error has occured", msgError: true}})
-//         if(user)
-//             res.status(4000).json({message: {msgbody: "Email already exsists", msgError: true}})
-//         else{
-//             const newUser = new User({email,password})
-            
-//         }
-//     })
-// }
-
-// module.exports.loginUser = (req,res) => {
-//     User.find({ email: req.body.email, password: req.body.password})
-//     .then(foundUser => res.json({ user: foundUser}))
-//     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
-// }
-
+// Checks email for uniqueness
 module.exports.EmailUser = (req,res) => {
     User.find({ email: req.body.email })
     .then(foundUser => res.json({ user: foundUser}))
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
+// ADDs Kids to parents
 module.exports.AddChildUser = (req,res) => {
     User.findOneAndUpdate({ _id: req.params.id},
         { $addToSet: { kids: req.body.kids[0]  } })
@@ -71,13 +46,31 @@ module.exports.AddChildUser = (req,res) => {
 }
 
 
+
+
+
+//FAMILY LINK
+module.exports.FamilyLinkUser = (req,res) => {
+    console.log(req.body.spouse)
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { spouse: req.body.spouse[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong adding', error: err }));
+}
+
+
+
+
+
+
+
+
 // CREATE
 module.exports.createUser = (req,res) => {
     User.create(req.body)
     .then(newUser => res.json({ user: newUser }))
     .catch(err => res.status(400).json({ message: 'Something went wrong creating new product', error: err }));
 }
-
 
 // DELETE
 module.exports.deleteUser = (req,res) => {
