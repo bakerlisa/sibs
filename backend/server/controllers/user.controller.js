@@ -22,10 +22,33 @@ module.exports.editUser = (req,res) => {
 }
 
 module.exports.loginUser = (req,res) => {
-    User.find({ email: req.body.email, password: req.body.password})
-    .then(foundUser => res.json({ user: foundUser}))
-    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+    if(req.isAuthenticated()){
+        const {_id, email} = req.user
+        const token = signToken(_id);
+        res.cookie('access_token',token,{httpOnly: true, sameSite:true})
+        res.status(200).json({isAuthenticated: true, user: {email }} );
+    }
 }
+
+// module.exports.loginUser = (req,res) => {
+//     const {email,password} = req.body;
+//     User.findOne({email}, (err,user) => {
+//         if(err)
+//             res.status(500).json({message: {msgbody: "error has occured", msgError: true}})
+//         if(user)
+//             res.status(4000).json({message: {msgbody: "Email already exsists", msgError: true}})
+//         else{
+//             const newUser = new User({email,password})
+            
+//         }
+//     })
+// }
+
+// module.exports.loginUser = (req,res) => {
+//     User.find({ email: req.body.email, password: req.body.password})
+//     .then(foundUser => res.json({ user: foundUser}))
+//     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+// }
 
 module.exports.EmailUser = (req,res) => {
     User.find({ email: req.body.email })

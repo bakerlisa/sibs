@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true })); // This is new
 
 require('./server/routes/user.route')(app);
 require('./server/routes/child.route')(app);
+// require('./server/routes/passport.route')(app);
 
 
 app.listen(8000, () => {
