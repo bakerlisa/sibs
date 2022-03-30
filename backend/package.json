@@ -6,6 +6,8 @@
     "express": "^4.17.3",
     "mongoose": "^6.2.9",
     "multer": "^1.4.4",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "uuid": "^3.4.0",
     "uuidv4": "^6.2.13"
   },
