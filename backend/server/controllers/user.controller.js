@@ -50,12 +50,11 @@ module.exports.AddChildUser = (req,res) => {
 
 
 //FAMILY LINK
-module.exports.FamilyLinkUser = (req,res) => {
-    console.log(req.link.id)
+module.exports.SpouseLinkUser = (req,res) => {
     User.findOneAndUpdate({ _id: req.params.id},
-        { $addToSet: { [req.link.id]: req.body.spouse[0]  } })
+        { $addToSet: { spouse: req.body.spouse[0]  } })
     .then(spouseUser => res.json({ user: spouseUser}))
-    .catch(err => res.status(400).json({ message: 'Something went wrong adding', error: err }));
+    .catch(err => res.status(400).json({ message: 'Person is already a spouse', error: err }));
 }
 
 

@@ -12,15 +12,18 @@ import Error from './views/Error';
 import Login from './views/Login';
 import Settings from './views/Settings';
 import Find from './views/Find';
+import Footer from './components/Footer';
 
 
 function App() {
   const [user,setUser] = useState({});
   const userIDs = localStorage.getItem('userID');
+  const [spouseIDs,setSpouseIds] = useState([])
 
   useEffect(() => {
       axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
           setUser(response.data.user)
+          setSpouseIds(response.data.user.spouse)
         })
   }, [userIDs,user]);
 
@@ -33,7 +36,7 @@ function App() {
       <Switch>
         {/* LOGIN */}
         <Route exact path="/">
-          <UserContext.Provider value={{ user, setUser,userIDs }}>
+          <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs }}>
           {
             userIDs ? <Dashboard /> : <Login />
           }
@@ -61,6 +64,8 @@ function App() {
 
         <Route><Redirect to="/404" /></Route>
       </Switch>
+      
+      <Footer/>
     </div>
   );
 }

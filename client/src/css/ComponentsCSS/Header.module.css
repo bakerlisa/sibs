@@ -1,0 +1,17 @@
+/* HEADER COMPONENTS CSS */
+.navWrapper{padding: 25px 50px; background-color:var(--orange); display: flex;align-items: center;justify-content: start;flex-wrap: wrap;}
+
+/* logo */
+.logo{color:var(--white); font-family: 'Pacifico', cursive; font-size: 45px; width: 100px;}
+
+/* image */
+.navWrapper .imgWrp{width: 125px; padding-right: 25px; position: relative;}
+    .navWrapper .imgWrp:before{content:''; height:100px; width: 100px; border:solid 2px rgba(255,255,255,.25); border-radius:50%; position: absolute; top: -2px;left: -2px; transform-origin: center; transform: scale(.75);transition: all .25s ease-in; }
+.navWrapper img{border-radius: 50%; height:100px; transform-origin: center; transform: scale(1); transition: all .15s ease-in;}
+    .navWrapper .imgWrp:hover img{cursor: pointer; transform: scale(.85); transition: all .15s ease-in;}
+    .navWrapper .imgWrp:hover:before{transform: scale(1); transition: all .25s ease-in;}
+
+/* nav */
+nav{text-align: right; width: calc(100% - 225px); }
+nav a,nav > div{color:var(--white); padding: 0 10px; text-decoration: none; font-weight: 600; display: inline;}
+nav a:hover, nav > div:hover{cursor: pointer; color:var(--white);}

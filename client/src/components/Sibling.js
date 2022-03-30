@@ -18,17 +18,19 @@ const Sibling = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         console.log(link)
-        axios.patch(`http://localhost:8000/api/update/user/familyLink/${userIDs}/${link}`,form).then(response=>{
-            console.log(response.data.user)
-        })
-        .catch(err => {
-            setDBError(err.response.data.error.errors)
-        });
+        if(link === "spouse"){
+            axios.patch(`http://localhost:8000/api/update/user/spouse/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
+        }
     }
     return(
         <form onSubmit={onSubmitHandler}>
             {
-                dbError.length > 0 ? dbError : ""
+                dbError
             }
             <label htmlFor={props.id}>Add As:</label>
             <select name={props.id} defaultValue="empty" onChange={onChangeHandler}>

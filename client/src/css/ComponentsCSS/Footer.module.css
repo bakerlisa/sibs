@@ -1,0 +1,4 @@
+.footer{background-color:var(--orange); color:var(--white);padding: 25px;}
+.footer a{color:var(--white); text-decoration: underline;}
+.footer a:hoveR{color:var(--gray);}
+.footer span{font-family: 'Pacifico', cursive;}

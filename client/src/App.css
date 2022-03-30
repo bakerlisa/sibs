@@ -1,66 +1,30 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 /* ======================================= 
 GLOBAL STYLES 
 ======================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;600;800&family=Pacifico&display=swap');
 
 :root{
   --white:#fff;
-  --black:#2d2d2d;
-  --blue:#033E8C;
-    --md_blue:#6387A6;
-    --lt_blue:#DCE6F2;
-  --green:#006600;
-  --pink:#E3CBCE;
-  --yellow:#F3D09B;
-  --brown:#3a1605;
-  --red:#BF0404;
-  --gray:#c4c4c4;
-    --dk_gray:#3D5473;
+  --black:#260104;
+  --gray:#ececec;
+  --orange:#F2784B;
+  --purple:#51548C;
+  --pink:#8C3E5B;
+  --red:#BF0B1A;
+    --dk_red:#730710;
+  
 }
 
-h1{font-size: 65px;}
-h1 span{text-transform: capitalize;}
+body{ position: relative;
+  background-color: #f9f9f9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23f7e0d7' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* body:before{content:''; height:100%; width: 63%; background-color:#F9F9F9; position: absolute; top: 0;right: 0; } */
+h1{font-size: 65px; margin: 0;}
+  h1 span{text-transform: capitalize;}
+h3{font-weight: 500; margin: 0; font-size: 22px;}
 
-*{box-sizing: border-box; font-family: 'Fira Sans', sans-serif;}
+*{box-sizing: border-box; font-family: 'Barlow Semi Condensed', sans-serif;}
 
 .App {text-align: center;}
 
@@ -77,9 +41,6 @@ h1 span{text-transform: capitalize;}
   .edit:hover{transition: all .25s ease-out; background-color: transparent; color:var(--md_blue);}
 /* CONTAINER */
 .container{max-width: 1200px; margin: 0 auto;}
-
-/* FOOTER */
-footer{background-color:var(--black); padding: 50px; color:var(--whtie);}
 
 /* FORM */
 form{max-width: 600px; margin: 0 auto;}
@@ -100,12 +61,3 @@ form .submit:hover{cursor: pointer; opacity: .75;}
   /* Database Errors */
   .errWrp{ color:var(--red);}
   .errWrp h4{margin:0 ;}
-/* NAV */
-nav{text-align: right; padding: 25px 50px; background-color:var(--black); border-bottom: solid 1px var(--pink);}
-nav a,nav > div{color:var(--pink); padding: 0 10px; text-decoration: none; font-weight: 600; display: inline;}
-nav a:hover, nav > div:hover{cursor: pointer; color:var(--white);}
-
-/* NAV */
-nav{text-align: right; padding: 25px 50px; background-color:var(--black); border-bottom: solid 1px var(--white);}
-nav a{color:var(--white); padding: 0 10px; text-decoration: none; font-weight: 600;}
-nav a:hover{color:var(--white);}
