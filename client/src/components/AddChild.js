@@ -49,15 +49,14 @@ const AddChild = (props) => {
                 setMessage("Hmm...something went awry. Try again")
             }else{
                 setMessage("Child Sucessfully added!")
-                //add it to me
-                //add it to the parent
-                //add to kids array
-                    //response.data.child.id
-                // var newChild=({id:userIDs, parents: parentID})
                 var addChild=({kids: [response.data.child._id]})
                 axios.patch(`http://localhost:8000/api/update/user/children/${userIDs}`,addChild).then(response=>{
-                    console.log(response.data.user)
                 })
+                if(parentID.length > 1){
+                    //haven't tested for second parent
+                    axios.patch(`http://localhost:8000/api/update/user/children/${parentID[1]}`,addChild).then(response=>{
+                })
+                }
             }
         })
         
