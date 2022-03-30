@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext,useRef } from 'react';
 import UserContext from '../context/UserContext';
-import ImageUploader from './ImageUploader';
 import Parents from './Parents';
 import FileBase64 from 'react-file-base64';
 
 const AddChild = (props) => {
+    const fileInput = useRef(null);
     const { user, setUser, userIDs } = useContext(UserContext)
+    
+    const [message,setMessage] = useState("")
+    
     const [allUsers, setAllUsers] = useState([]);
     const [child,setChild] = useState({})
-    const fileInput = useRef(null);
-    const [imageError,setImageError] = useState("")
-    const [img,setImg] = useState("")
+    const [parentID,setParentID] = useState([])
     
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
@@ -27,27 +28,54 @@ const AddChild = (props) => {
     }
 
     const onImageChangeHandler = (newImage) => {
-        console.log(newImage)
         setChild({ ...child,image: newImage})
     }
 
     const onChildChangeHandler = (event) => {
         setChild({ ...child,[event.target.name]: event.target.value })
     }
+
+    const onParentChangeHandler = (event) => {
+        setParentID([...parentID, event.target.value])
+    }
     
     const onChildSubmit = (event) => {
         event.preventDefault();
-
+        //check with 2 parents
+        setChild({...child,parents:parentID})
+        axios.post(`http://localhost:8000/api/create/child`,child).then(response=>{
+            console.log(response.data.child._id)
+            if(response.data.child.length > 1){
+                setMessage("Hmm...something went awry. Try again")
+            }else{
+                setMessage("Child Sucessfully added!")
+                //add it to me
+                //add it to the parent
+                //add to kids array
+                    //response.data.child.id
+                // var newChild=({id:userIDs, parents: parentID})
+                var addChild=({kids: [response.data.child._id]})
+                axios.patch(`http://localhost:8000/api/update/user/children/${userIDs}`,addChild).then(response=>{
+                    console.log(response.data.user)
+                })
+            }
+        })
+        
     }
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users`).then(response=>{
             setAllUsers(response.data.users)
         })
-    }, []);
+
+        setChild({...child,parents:userIDs})
+    }, [userIDs]);
 
     return(
         <div>
+            {
+                message.length > 0 ? message : ""
+            }
             <h2>Add Child</h2>
             <p>Mainly for minors</p>
             <form onSubmit={onChildSubmit}>
@@ -65,7 +93,7 @@ const AddChild = (props) => {
                 <div>
 
                     <label htmlFor="parent">Other Parent: </label>
-                    <select name="parent" defaultValue="empty" onChange={onChildChangeHandler}>
+                    <select name="parent" defaultValue="empty" onChange={onParentChangeHandler}>
                         <option value="empty" disabled>Other Parent...</option>
                         {
                             allUsers.map((item,i)=> {
@@ -76,7 +104,7 @@ const AddChild = (props) => {
                 </div>
 
                 <input type="hidden" name="parentTwo" value={userIDs} />
-                
+
                 <input type="submit" value="Add Child" />
             </form>
         </div>

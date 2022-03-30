@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const ChildSchema = new mongoose.Schema({
     name: {
         type:String,
         minlength: [3, "Name needs to be at least 3 characters"],
-        required: [true, "First name is required"]
+        required: [true, "Name is required"]
     },
     image: {
         type:String
@@ -18,6 +18,6 @@ const UserSchema = new mongoose.Schema({
     }
 },{timestamps:true});
 
-const Users = mongoose.model('Users', UserSchema);
+const Child = mongoose.model('Child', ChildSchema);
 
-module.exports = Users;
+module.exports = Child;

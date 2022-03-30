@@ -21,8 +21,6 @@ module.exports.editUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong when getting single product', error: err }));
 }
 
-
-
 module.exports.loginUser = (req,res) => {
     User.find({ email: req.body.email, password: req.body.password})
     .then(foundUser => res.json({ user: foundUser}))
@@ -31,6 +29,13 @@ module.exports.loginUser = (req,res) => {
 
 module.exports.EmailUser = (req,res) => {
     User.find({ email: req.body.email })
+    .then(foundUser => res.json({ user: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+}
+
+module.exports.AddChildUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { kids: req.body.kids[0]  } })
     .then(foundUser => res.json({ user: foundUser}))
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }

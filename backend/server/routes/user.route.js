@@ -8,4 +8,5 @@ module.exports = app => {
     app.post('/api/create/user', UsersController.createUser);
     app.delete('/api/delete/user/:id', UsersController.deleteUser);
     app.patch('/api/update/user/:id', UsersController.editUser)
+    app.patch('/api/update/user/children/:id', UsersController.AddChildUser)
 }
