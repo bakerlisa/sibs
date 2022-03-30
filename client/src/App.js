@@ -47,7 +47,7 @@ function App() {
         </Route>
 
         {/* Add Fmaily Member */}
-        <Route exact path="/add">
+        <Route exact path="/find">
           <Find />
         </Route>
 

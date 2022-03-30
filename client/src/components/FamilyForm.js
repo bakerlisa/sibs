@@ -1,14 +1,16 @@
 // import axios from 'axios';
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import AddChild from './AddChild';
 import ImageUploader from './ImageUploader.js';
+import Password from './Password';
 
 const FamilyForm = props => {
-    // const history = useHistory();
+    const history = useHistory();
+    
     const { user, setUser, userIDs } = useContext(UserContext)
-    const fileInput = useRef(null);
 
     const [message,setMessage] = useState("")
     const [dbError,setDBError] = useState({ id:0 })
@@ -40,16 +42,6 @@ const FamilyForm = props => {
         }
     }
 
-    const onPasswordHandler = (event) => {
-        setForm({...form,[event.target.name]: event.target.value})
-
-        if(event.target.value.length < 8 ){
-            setError({...error, password: false})
-        }else{
-            setError({...error, password: true})
-        }
-    }
-
     const onChangeHandlerWelcome = (event) => {
         setForm({...form,[event.target.name]: event.target.value})
         
@@ -69,9 +61,8 @@ const FamilyForm = props => {
     const onSubmitHandlerWelcome = (event) =>{
         event.preventDefault();   
 
-        axios.patch(`http://localhost:8000/api/update/user/${userIDs}`).then(response=>{
-            console.log("Complete")
-            console.log(response.data.user)
+        axios.patch(`http://localhost:8000/api/update/user/${userIDs}`, form).then(response=>{
+            setMessage("Personal Info has been updated")
         })
 
         .catch(err => {
@@ -80,17 +71,17 @@ const FamilyForm = props => {
     }
 
     useEffect(() => {
-        setForm(user)
+        axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
+            setForm(response.data.user)
+        })
     }, [userIDs]);
 
     return(
         <>
-            <div>
-                <h2>Iamge Upload</h2>
-                <ImageUploader />
-            </div>
+            <ImageUploader />
 
             <form onSubmit={onSubmitHandlerWelcome} >
+                <h2>Edit Personal Info</h2>
                 <div className="errWrp">
                     {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
@@ -142,13 +133,9 @@ const FamilyForm = props => {
                         error.email ? "" : <span>Please enter an email</span>
                     }
                 </div>
-
                 <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password"  name="password" value={form.password} placeholder="Password" onChange={onPasswordHandler} />
-                    {
-                        error.password ? "" : <span>Please enter a password</span>
-                    }
+                    <label htmlFor="birthday">Birthday: </label>
+                    <input type="date"  name="birthday" value={form.birthday} onChange={onChangeHandlerWelcome} />
                 </div>
 
                 {
@@ -156,6 +143,10 @@ const FamilyForm = props => {
                 }
 
             </form>
+            
+            <AddChild />
+
+            {/* <Password /> */}
         </>
     )
 }

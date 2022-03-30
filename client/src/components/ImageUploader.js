@@ -1,42 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState,useContext, useRef} from 'react';
 import axios from 'axios';
+import FileBase64 from 'react-file-base64';
+import UserContext from '../context/UserContext';
+import { useHistory } from 'react-router-dom';
 
-function ImageUploader() {
+const ImageUploader = (props) => {
+    const history = useHistory();
     const [file, setFile] = useState()
     const [img,setImg] = useState("")
     const [imageError,setImageError] = useState("")
+    const [form,setForm] = useState()
+    const [success,setSuccess] = useState("")
+    const fileInput = useRef(null);
 
-    function handleChange(event) {
-        setFile(event.target.files[0])
+    const { user, setUser, userIDs } = useContext(UserContext)
 
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault()
-            const url = 'http://localhost:8000/api/uploadFile';
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('fileName', file.name);
-            
-            const config = {
-                headers: {
-                    'content-type': 'multipart/form-data',
-                },
-            };
-        axios.post(url, formData, config).then((response) => {
-            console.log(response.data);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.patch(`http://localhost:8000/api/update/user/${userIDs}`,form).then((response) => {
+            setSuccess("Image has been updated!");
         });
     }
 
 return (
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="image">Image:</label>
-        <input type="file" name="image" onChange={handleChange} />
+    <>
+        <h2>Image Upload</h2>    
+            
         {
-            imageError.length > 0 ? "" : <span>{imageError}</span> 
+            success.length > 0 ? <div className="success">{success}</div> : ""
         }
-        <button type="submit">Upload</button>
-    </form>
+
+        <form onSubmit={handleSubmit}><FileBase64 multiple={ false } onDone={ ({base64}) =>  setForm({ ...form, image:base64 }) } /> <button type="submit">Upload Image</button> </form> 
+    </>
     );
 }
 
