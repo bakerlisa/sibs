@@ -41,7 +41,6 @@ module.exports.AddChildUser = (req,res) => {
 }
 
 
-
 // CREATE
 module.exports.createUser = (req,res) => {
     User.create(req.body)
@@ -49,9 +48,11 @@ module.exports.createUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong creating new product', error: err }));
 }
 
+
 // DELETE
 module.exports.deleteUser = (req,res) => {
     User.deleteMany({_id: req.params.id})
     .then(result => res.json({ result: result}))
     .catch(err => res.status(400).json({ message: 'Something went wrong when deleting product', error: err }));
 }
+
