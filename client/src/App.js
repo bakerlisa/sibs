@@ -64,8 +64,9 @@ function App() {
 
         <Route><Redirect to="/404" /></Route>
       </Switch>
-      
-      <Footer/>
+      <UserContext.Provider value={{ userIDs }}>
+        <Footer/>
+        </UserContext.Provider>
     </div>
   );
 }

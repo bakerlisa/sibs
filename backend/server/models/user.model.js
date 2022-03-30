@@ -34,6 +34,11 @@ const UserSchema = new mongoose.Schema({
         minlength: [8, "address needs to be at least 8 characters"],
         required: [true, "address is required"]
     },
+    phone:{
+        type:Number,
+        minlength: [10, "Phone number needs to be at least 10 characters"],
+        required: [true, "Phone number is required"]
+    },
     same:{
         type: Boolean
     },

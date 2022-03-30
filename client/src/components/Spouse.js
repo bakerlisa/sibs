@@ -13,10 +13,10 @@ const Spouse = (props) => {
 
     return(
         <div>
-            {
+            {/* {
                 partner.image === 'empty.jpg' ? <img src={empty} alt={partner.firstName} /> : <img src={partner.image} alt={partner.firstName} />
-            }
-            <p>{partner.firstName} {partner.lastName}</p>
+            } */}
+            {/* <p>{partner.firstName} {partner.lastName}</p> */}
         </div>
     )
 }

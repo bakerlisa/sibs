@@ -23,6 +23,7 @@ const FamilyForm = props => {
         email: true,
         address:true,
         password: true,
+        phone: true,
         confirmPassword: true
     })
 
@@ -30,7 +31,8 @@ const FamilyForm = props => {
         firstName: 3,
         lastName: 3,
         password: 8,
-        address: 10
+        address: 10,
+        phone: 10
     }
 
     function ValidateEmail(event) {
@@ -132,6 +134,10 @@ const FamilyForm = props => {
                     {
                         error.email ? "" : <span>Please enter an email</span>
                     }
+                </div>
+                <div>
+                    <label htmlFor="phone">Phone Number: </label>
+                    <input type="phone"  name="phone" value={form.phone} onChange={onChangeHandlerWelcome} />
                 </div>
                 <div>
                     <label htmlFor="birthday">Birthday: </label>

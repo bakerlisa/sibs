@@ -23,6 +23,7 @@ const RegistrationForm = props => {
         lastName: false,
         email: false,
         address:false,
+        phone:false,
         password: false,
         confirmPassword: false
     })
@@ -31,7 +32,8 @@ const RegistrationForm = props => {
         firstName: 3,
         lastName: 3,
         password: 8,
-        address: 10
+        address: 10,
+        phone: 10
     }
 
     function ValidateEmail(event) {
@@ -91,10 +93,14 @@ const RegistrationForm = props => {
                         localStorage.setItem('userID', response.data.user._id);
                         setUser(response.data.user)
                     })
+                    .catch(err => {
+                        setDBError(err.response.data.error.errors)
+                    });
                 }
             })
 
         .catch(err => {
+            console.log("OR Here")
             setDBError(err.response.data.error.errors)
         });
     }
@@ -151,6 +157,14 @@ const RegistrationForm = props => {
                     <input type="email"  name="email" value={form.email} placeholder="Email" onChange={ValidateEmail} />
                     {
                         error.email ? "" : <span>Please enter an email</span>
+                    }
+                </div>
+
+                <div>
+                    <label htmlFor="phone">Phone Number: </label>
+                    <input type="phone"  name="phone" value={form.phone} placeholder="000-000-0000" onChange={onChangeHandlerWelcome} />
+                    {
+                        error.phone ? "" : <span>Please enter a phone number</span>
                     }
                 </div>
 
