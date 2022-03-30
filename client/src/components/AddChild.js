@@ -52,6 +52,7 @@ const AddChild = (props) => {
                 var addChild=({kids: [response.data.child._id]})
                 axios.patch(`http://localhost:8000/api/update/user/children/${userIDs}`,addChild).then(response=>{
                 })
+                
                 if(parentID.length > 1){
                     //haven't tested for second parent
                     axios.patch(`http://localhost:8000/api/update/user/children/${parentID[1]}`,addChild).then(response=>{

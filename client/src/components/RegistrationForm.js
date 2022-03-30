@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+const bcrypt = require('bcrypt');
 
 const RegistrationForm = props => {
     // const history = useHistory();
