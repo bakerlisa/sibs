@@ -1,4 +1,5 @@
 const UsersController = require('../controllers/user.controller');
+const passport = require('passport');
 
 module.exports = app => {
     app.get('/api/users', UsersController.allUsers);

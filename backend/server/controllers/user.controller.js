@@ -1,5 +1,12 @@
 const User = require('../models/User.model');
 
+const signToken = (userID) => {
+    return JWT.sign({
+        iss: "noobcoder",
+        sub: userID
+    }, "noobcoder",{expiresIn: "5000"});
+}
+
 // FIND
 module.exports.allUsers = (req, res) => {
     User.find()
@@ -26,7 +33,7 @@ module.exports.loginUser = (req,res) => {
         const {_id, email} = req.user
         const token = signToken(_id);
         res.cookie('access_token',token,{httpOnly: true, sameSite:true})
-        res.status(200).json({isAuthenticated: true, user: {email }} );
+        res.status(200).json({isAuthenticated: true, user: {email}} );
     }
 }
 
