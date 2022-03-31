@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React,{useContext, useEffect, useState} from 'react';
 import UserContext from '../context/UserContext';
+import FileBase64 from 'react-file-base64';
 
 import empty from '../img/empty.jpg';
 
@@ -13,7 +14,11 @@ import { faCakeCandles,faTrashCan,faPencil } from '@fortawesome/free-solid-svg-i
 const Kids = (props) => {
     const { users,userIDs,setUser } = useContext(UserContext)
     const [editTrigger,setEditTrigger] = useState(false)
-    const [kidEdit,setKidEdit] = useState({})
+    const [kidEdit,setKidEdit] = useState({
+        name:"",
+        birthday:"",
+        image:""
+    })
 
     const [current,setCurrent] = useState({})
     const [kids,setKids] = useState([])
@@ -34,8 +39,12 @@ const Kids = (props) => {
 
     const editChild = (arr) => {
         const copyUsers = current
-        const toEdit = copyUsers.kids[arr]
-        console.log(toEdit)
+        setKidEdit(copyUsers.kids[arr])
+        
+    }
+
+    const onImageChangeHandler = (newImage) => {
+        // setChild({ ...child,image: newImage})
     }
 
     useEffect(() => {
@@ -72,6 +81,22 @@ const Kids = (props) => {
                     </div>
                 })
             }
+            <div className={styled.popup}>
+                <h2>Popup</h2>
+                <form action="">
+                    <div>
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" name="name" value={kidEdit.name} />
+                    </div>
+
+                    <div>
+                        <label htmlFor="birthday">Birthday:</label>
+                        <input type="date" name="birthday" value={kidEdit.birthday} />
+                    </div>
+                    <FileBase64 multiple={ false } onDone={ ({base64}) =>  onImageChangeHandler(base64) } value={kidEdit.image} />
+                
+                </form>
+            </div>
         </div>
     )
 }
