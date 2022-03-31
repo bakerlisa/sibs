@@ -7,14 +7,14 @@ const Dashboard = (props) => {
     const { user, setUser, userIDs, spouseIDs } = useContext(UserContext)
 
     return(
-        <div className="container">
+        <div className="smallContainer">
             <h1>Welcome Back <span> {user.firstName} </span>!</h1> 
             <h3>Your excuess for missing birthdays is now over. Wan Wan Wan</h3>
             {/* if therse's a spouse */}
             {
                 spouseIDs.length === 0 ? "" : <>
                     <div className={styled.spouseWrp}>
-                        <h2>Spouse</h2>
+                        <h2>Congrats! You're married too...</h2>
                         {
                             spouseIDs.map((item,i) => {
                                 return <Spouse key={i} id={item} />

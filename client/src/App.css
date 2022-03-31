@@ -24,6 +24,9 @@ h1{font-size: 65px; margin: 0;}
   h1 span{text-transform: capitalize; }
 h2{font-size: 30px; margin: 0; font-weight: 600; text-transform: uppercase;}
 h3{font-weight: 500; margin: 0; font-size: 22px;}
+h4{text-transform: uppercase; letter-spacing: 1px; margin: 0;}
+
+strong{font-weight: 600;}
 
 .logo{font-family: 'Pacifico', cursive; color:var(--black);}
 
@@ -45,6 +48,7 @@ h3{font-weight: 500; margin: 0; font-size: 22px;}
 
   /* CONTAINER */
 .container{max-width: 1200px; margin: 0 auto; padding: 50px;}
+.smallContainer{max-width: 1000px; margin: 0 auto; padding: 50px;}
 .flex{display: flex;align-items: center;justify-content: center;flex-wrap: wrap;}
 
 .col-2{width: 50%; padding: 0 25px;}
