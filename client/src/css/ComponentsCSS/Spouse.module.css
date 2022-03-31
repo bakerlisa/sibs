@@ -3,11 +3,13 @@
 /* img */
 .imgColumn{width: 175px;}
 .imgColumn .img{border-radius:50%; height: 150px; width: auto; margin-right: 25px;}
+svg{padding-right: 10px;}
 
 /* name/birthday */
 .contentWrp{width: calc(33.33% - 50px); text-align: left; padding: 0 10px;}
 .contentWrp .name{font-size: 25px;font-weight: 600;width: 100%; margin: 0 0 10px;}
 .contentWrp .birthday{margin-top: 0;}
+.contentWrp .birthday svg{color:var(--pink);}
 
 /* contaccInfo */
 .contactInfo{width: calc(33.33% - 50px); padding: 0 10px; text-align: left;}
@@ -17,6 +19,7 @@
 /* addressWrp */
 .addressWrp{width: calc(33.33% - 50px);text-align: left; padding: 0 10px;}
 .addressWrp a.address{display: block; background-color:var(--orange); color:var(--white); text-decoration: none;padding: 10px 25px;  text-align: center; border-radius: 5px; border-bottom:solid 2px var(--orange);  transition: all .25s ease-in;}
+.addressWrp .address > span{padding-left: 25px; display: block;}
 .addressWrp a.address:hover{border-radius: 0; background-color:transparent; color:var(--orange); transition: all .25s ease-in;}
 
 @media all and (max-width:1000px){
