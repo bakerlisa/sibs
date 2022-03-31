@@ -22,7 +22,7 @@ body{ position: relative;
 /* body:before{content:''; height:100%; width: 63%; background-color:#F9F9F9; position: absolute; top: 0;right: 0; } */
 h1{font-size: 65px; margin: 0;}
   h1 span{text-transform: capitalize; }
-h2{font-size: 30px; font-weight: 600; text-transform: uppercase;}
+h2{font-size: 30px; margin: 0; font-weight: 600; text-transform: uppercase;}
 h3{font-weight: 500; margin: 0; font-size: 22px;}
 
 .logo{font-family: 'Pacifico', cursive; color:var(--black);}
@@ -47,14 +47,16 @@ h3{font-weight: 500; margin: 0; font-size: 22px;}
 .container{max-width: 1200px; margin: 0 auto; padding: 50px;}
 .flex{display: flex;align-items: center;justify-content: center;flex-wrap: wrap;}
 
-.col-2{width: 50%; padding: 25px;}
+.col-2{width: 50%; padding: 0 25px;}
 
 /* FORM */
 form{max-width: 600px; margin: 0 auto;}
 form label{display: block;text-align-last: left; font-weight: 600;}
 form input{border:none; background-color:var(--white); padding: 10px; border-radius:5px;}
 form input,form select{width: 100%; padding: 10px;}
-  form input:focus,form select:focus{outline: none; }
+  form input:focus,form select:focus{outline: none;  transition: all .25s ease-in; box-shadow: 0px 0px 27px 12px ;
+     -webkit-box-shadow: 0px 0px 27px 12px rgba(242,120,75,0.14);
+    -moz-box-shadow: 0px 0px 27px 12px rgba(242,120,75,0.14);}
 form .checkbox{display: flex;align-items: center;justify-content: start;flex-wrap: wrap; margin: 20px 0;}
 form .checkbox input{width: 25px;margin: 0; height: 18px; width: 18px; margin-left: 15px;}
 form select{border:none}
@@ -62,6 +64,7 @@ form select{border:none}
 form input.disabled{background-color:var(--gray);}
 form .submit{background-color:var(--orange); color:var(--white); text-transform: uppercase; font-weight: 400; letter-spacing: 1px; border: none;; padding: 15px;}
 form .submitBlue{background-color:var(--blue); color:var(--white); text-transform: uppercase; font-weight: 400; letter-spacing: 1px; border: none;; padding: 15px;}
+.submitPink{background-color:var(--pink); color:var(--white);}
 form .submit:hover, form .submitBlue:hover{cursor: pointer; opacity: .75;}
   input .disabled{background-color:var(--red); opacity: 0.25;}
 

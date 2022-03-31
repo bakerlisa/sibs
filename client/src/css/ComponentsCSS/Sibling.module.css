@@ -1,0 +1,3 @@
+form.sibling{display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
+.sibling select{margin-bottom: 10px; width: calc(70% - 10px); margin: 0;}
+.sibling input{width: calc(30% - 10px); text-transform: uppercase;}

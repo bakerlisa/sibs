@@ -81,7 +81,7 @@ const FamilyForm = props => {
         axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
             setForm(response.data.user)
         })
-    }, [userIDs]);
+    }, [userIDs,user]);
 
     return(
         <>
@@ -93,11 +93,11 @@ const FamilyForm = props => {
                     {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
                     }
-                    {
-                        message.length > 1 ? message : ""
-                    }
+                    
                 </div>
-
+                    {
+                        message.length > 1 ? <div className="success">{message}</div> : ""
+                    }
                     <span className={styled.wrapper}>
                         <div>
                             <label htmlFor="firstName">First Name: </label>

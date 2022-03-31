@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import UserBlock from '../components/UserBlock';
+import styled from '../css/ViewsCSS/Find.module.css'
 
 
 const Find = (props) => {
@@ -14,10 +15,11 @@ const Find = (props) => {
 
     return(
         <div className="container">
-            <h1>Add to Address Book:</h1>
-            <div className="famWrp">
+            <h1>Address Book:</h1>
+            <h3>We know you'd like to lose them...but this page is for finding them</h3>
+            <div className={styled.famWrp}>
                 {
-                    allUsers.length <= 1 ? <h3>Hmm...looks like you're the only user!</h3> : ""
+                    allUsers.length <= 1 ? <h3>You're off the hook!! Tt looks like you're our only user!</h3> : ""
                 }
                 {
                     allUsers.map((item,i) => {

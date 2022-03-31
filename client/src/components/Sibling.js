@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React,{useContext, useState} from 'react';
 import UserContext from '../context/UserContext';
+import styled from '../css/ComponentsCSS/Sibling.module.css';
 
 const Sibling = (props) => {
     const { user, setUser, userIDs } = useContext(UserContext)
@@ -17,7 +18,7 @@ const Sibling = (props) => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(link)
+
         if(link === "spouse"){
             axios.patch(`http://localhost:8000/api/update/user/spouse/${userIDs}`,form).then(response=>{
                 console.log(response.data.user)
@@ -28,11 +29,11 @@ const Sibling = (props) => {
         }
     }
     return(
-        <form onSubmit={onSubmitHandler}>
+        <form className={styled.sibling} onSubmit={onSubmitHandler}>
             {
                 dbError
             }
-            <label htmlFor={props.id}>Add As:</label>
+            {/* <label htmlFor={props.id}>Add As:</label> */}
             <select name={props.id} defaultValue="empty" onChange={onChangeHandler}>
                 <option value="empty" disabled>Add As..</option>
                 <option value="kids">Kid</option>
@@ -46,7 +47,7 @@ const Sibling = (props) => {
 
 
             {
-                formError ?  <input type="submit" value="Add As" /> :  <input type="submit" value="Add As" disabled />
+                formError ?  <input type="submit" value="Add As" class="submitPink"/> :  <input type="submit" value="Add As" disabled />
             }
         </form>
     )

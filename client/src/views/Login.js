@@ -7,7 +7,7 @@ const Login = (props) => {
     return(
         <div>
             <h1 className="logo">Sibs</h1>
-            <h3>Keep track of those pesky family members!</h3>
+            <h3>An Address Book to keep track of those pesky family members!</h3>
             <div className="container flex">
                 <div className="col-2">
                     <h2>Login</h2>
