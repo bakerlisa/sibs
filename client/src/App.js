@@ -13,6 +13,7 @@ import Login from './views/Login';
 import Settings from './views/Settings';
 import Find from './views/Find';
 import Footer from './components/Footer';
+import Explain from './views/Explain';
 
 
 function App() {
@@ -60,6 +61,10 @@ function App() {
         {/* ERROR/404 routes */}
         <Route exact path="/404">
           <Error />
+        </Route>
+
+        <Route exact path="/explain">
+          <Explain />
         </Route>
 
         <Route><Redirect to="/404" /></Route>

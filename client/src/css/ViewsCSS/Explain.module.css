@@ -1,0 +1,11 @@
+.explainWrapper{height: 100vh; position: relative; }
+.explainWrapper .background{ background-image: url('../../img/explain.jpg'); position: fixed; z-index: 999; height:100vh; width: 100%; top: 0;padding: 0;  background-position: center; background-size: cover;}
+
+.text{opacity: 1; position: fixed; padding: 25px;bottom: 0%;  left: 0;right: 0;margin: 0 auto; z-index: 1000; color:var(--white); animation:slowIn 1s ease-in;}
+.text:before{content:''; height:100%; width: 100%; background-color:rgba(0,0,0,.5); position: absolute; top: 0;left: 0;z-index: -1;}
+
+@keyframes slowIn{
+    0%{opacity: 0;}
+    80%{opacity: 0;}
+    100%{opacity: 1;}
+}

@@ -1,0 +1,3 @@
+.imgwrp{display: block; margin: 25px auto;}
+.explain{display: block; text-decoration: none;color:var(--blue);}
+.explain:hover{color:var(--black);}
