@@ -38,7 +38,6 @@ const RegistrationForm = props => {
     }
 
     const onClickHandler = (event) => {
-        console.log("hwllo")
         setForm({...form,same: !form.same})
     }
 
@@ -119,7 +118,7 @@ const RegistrationForm = props => {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
                     }
                     {
-                        message.length > 1 ? message : ""
+                        message.length > 1 ? <p className="success">{message}</p> : ""
                     }
                 </div>
 
