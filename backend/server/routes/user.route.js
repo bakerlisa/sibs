@@ -11,6 +11,7 @@ module.exports = app => {
     app.patch('/api/update/user/:id', UsersController.editUser)
     app.patch('/api/update/user/children/:id', UsersController.AddChildUser)
     app.patch('/api/update/user/delete/kid/:id', UsersController.DeleteChildUser)
+    app.patch('/api/update/kid/:id', UsersController.EditChildUser)
     app.patch('/api/update/user/spouse/:id', UsersController.SpouseLinkUser)
 }
 

@@ -8,7 +8,7 @@ import empty from '../img/empty.jpg';
 import styled from '../css/ComponentsCSS/Kids.module.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCakeCandles,faTrashCan,faPencil } from '@fortawesome/free-solid-svg-icons'
+import { faCakeCandles,faTrashCan,faPencil,faXmark } from '@fortawesome/free-solid-svg-icons'
 
 
 const Kids = (props) => {
@@ -17,7 +17,8 @@ const Kids = (props) => {
     const [kidEdit,setKidEdit] = useState({
         name:"",
         birthday:"",
-        image:""
+        image:"",
+        index:""
     })
 
     const [current,setCurrent] = useState({})
@@ -39,12 +40,41 @@ const Kids = (props) => {
 
     const editChild = (arr) => {
         const copyUsers = current
-        setKidEdit(copyUsers.kids[arr])
+        setKidEdit({...kidEdit,name: copyUsers.kids[arr].name, birthday: copyUsers.kids[arr].birthday, image: copyUsers.kids[arr].image,index:arr })
+    }
+
+    // CHILD EDIT
+    const onChildEditSubmit = (event) =>{
+        event.preventDefault();
         
+        console.log(current)
+        axios.patch(`http://localhost:8000/api/update/user/${userIDs}`,kidEdit).then(response=>{
+            setUser(response.data.user)
+            setKids(response.data.user.kids)
+        })
+        .catch(err => {
+            console.log(err.response.data.error.errors)
+        });
     }
 
     const onImageChangeHandler = (newImage) => {
-        // setChild({ ...child,image: newImage})
+        console.log(kidEdit.index)
+        setKidEdit({ ...kidEdit,image: newImage})
+
+
+    }
+
+    const onChildEditHandler = (event) => {
+        setKidEdit({ ...kidEdit,[event.target.name]: event.target.value })
+    }
+
+    const removePopUp = (event) => {
+        setKidEdit({
+            name:"",
+            birthday:"",
+            image:"",
+            index:""
+        })
     }
 
     useEffect(() => {
@@ -65,7 +95,7 @@ const Kids = (props) => {
                 kids.map((item,i) => {
                     return <div key={i} className={styled.kidsWrp}>
 
-                        <div lassName={styled.imgCol}>
+                        <div className={styled.imgCol}>
                         {
                             item.image === "empty.jpg" ? <img className={styled.img} src={empty} alt={item.name} />  : <img className={styled.img} src={item.image} alt={item.name} /> 
                         }
@@ -81,22 +111,27 @@ const Kids = (props) => {
                     </div>
                 })
             }
-            <div className={styled.popup}>
-                <h2>Popup</h2>
-                <form action="">
-                    <div>
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" value={kidEdit.name} />
-                    </div>
+            {
+                kidEdit.name.length > 0 ? <div className={styled.popup}>
+                    <h2>Edit Child</h2>
+                    <form onSubmit={onChildEditSubmit}>
+                        <FontAwesomeIcon icon={faXmark} className={styled.exit} onClick={removePopUp} />
+                        <div>
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" value={kidEdit.name} onChange={onChildEditHandler} />
+                        </div>
 
-                    <div>
-                        <label htmlFor="birthday">Birthday:</label>
-                        <input type="date" name="birthday" value={kidEdit.birthday} />
-                    </div>
-                    <FileBase64 multiple={ false } onDone={ ({base64}) =>  onImageChangeHandler(base64) } value={kidEdit.image} />
-                
-                </form>
-            </div>
+                        <div>
+                            <label htmlFor="birthday">Birthday:</label>
+                            <input type="date" name="birthday" value={kidEdit.birthday} onChange={onChildEditHandler} />
+                        </div>
+
+                        <FileBase64 multiple={ false } onDone={ ({base64}) =>  onImageChangeHandler(base64) } value={kidEdit.image} />
+
+                        <input type="submit" value="Update Child" className="submitPink"/>
+                    </form>
+                </div> : "" 
+            }
         </div>
     )
 }

@@ -58,6 +58,27 @@ module.exports.DeleteChildUser = (req,res) => {
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
+
+
+
+module.exports.EditChildUser = (req,res) => {
+    User.where({  _id: req.params.id}.updateOne(updateObj))
+    .then(foundUser => res.json({ user: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+}
+// module.exports.EditChildUser = (req,res) => {
+//     User.where({  _id: req.params.id},updateObj,{ overwrite: true },
+//         { $set: {'kids.$.name': req.body.name, 'kids.$.birthday': req.body.birthday, 'kids.$.image': req.body.image } })
+//     .then(foundUser => res.json({ user: foundUser}))
+//     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+// }
+
+
+
+
+
+
+
 //FAMILY LINK
 module.exports.SpouseLinkUser = (req,res) => {
     User.findOneAndUpdate({ _id: req.params.id},

@@ -27,8 +27,7 @@ const Dashboard = (props) => {
             } 
 
             {/* if Children */}
-            
-                <Kids />
+            <Kids />
             
             
 

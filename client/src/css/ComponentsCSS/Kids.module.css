@@ -8,3 +8,10 @@
 .actions{ width: 200px;}
 .actions svg{margin: 0 10px;}
 .actions svg:hover{cursor: pointer; color:var(--pink);}
+
+/* POPUP */
+.popup{position: fixed; top: 50%; transform: translateY(-50%); left: 0;right: 0; z-index: 500; background-color:var(--gray); padding: 25px 25px 50px; max-width: 800px; margin: 0 auto; box-shadow: 0px 0px 30px rgba(0,0,0,.25);}
+.popup .exit{position: absolute; font-size: 35px; right: -20px;top: -15px; transform: scale(1);   transition: all .25s ease-in-out;}
+.popup .exit:hover{color:var(--orange); cursor: pointer; transform: scale(.8); transition: all .25s ease-in-out;}
+.popup h2{padding-top: 0;}
+.popup input[type="file"]{background-color: transparent; margin-bottom: 15px;}
