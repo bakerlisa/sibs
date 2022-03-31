@@ -1,0 +1,13 @@
+.imageContWrp{display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
+.imageContWrp input{background-color:transparent; width: 50%;}
+.imageContWrp button{background-color: var(--blue); color:var(--white); border:none; padding: 15px 25px; font-weight: 600; font-size: 16px; transform-origin: center; transform: scale(1); transition: all .25s ease-in; cursor: pointer;}
+.imageContWrp button:hover{transform: scale(.9); transition: all .25s ease-in;}
+
+input[type=file]::file-selector-button {padding: 10px 25px;  border:none; border-bottom: 2px solid var(--blue); background-color: transparent; transition: all .15s ease-in;}
+input[type=file]::file-selector-button:hover {cursor: pointer; background-color: var(--gray); transition: all .15s ease-in;}
+
+@media all and (max-width:1000px){
+    .imageContWrp{flex-direction: column;}
+    .imageContWrp input{width:100%;}
+    .imageContWrp button{align-self: end;}
+}

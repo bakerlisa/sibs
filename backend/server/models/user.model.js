@@ -78,6 +78,10 @@ const UserSchema = new mongoose.Schema({
     loggedIn:{
         type: Boolean,
         default:false
+    },
+    map:{
+        type: String,
+        default:""
     }
 },{timestamps:true});
 

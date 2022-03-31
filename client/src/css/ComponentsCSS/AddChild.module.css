@@ -1,0 +1,14 @@
+/* title */
+.subtitle{margin-top: -25px;padding-bottom: 0px;}
+
+/* form */
+.wrapper{display: flex;align-items: start;justify-content: space-between;flex-wrap: wrap; padding-bottom: 10px;}
+.wrapper > div{width: calc(50% - 10px);}
+.wrapper input{width: 100%;}
+.imgUp input{background-color: transparent;}
+
+
+@media all and (max-width:1000px){
+    .wrapper{flex-direction: column;}
+    .wrapper > div{width:100%;}
+}

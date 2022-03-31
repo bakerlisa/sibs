@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import styled from '../css/ComponentsCSS/Registration.module.css';
 
 
 const RegistrationForm = props => {
@@ -34,6 +35,11 @@ const RegistrationForm = props => {
         password: 8,
         address: 10,
         phone: 10
+    }
+
+    const onClickHandler = (event) => {
+        console.log("hwllo")
+        setForm({...form,same: !form.same})
     }
 
     function ValidateEmail(event) {
@@ -117,72 +123,78 @@ const RegistrationForm = props => {
                     }
                 </div>
 
-                <div>
-                    <label htmlFor="firstName">First Name: </label>
-                    <input type="text"  name="firstName" value={form.firstName} placeholder="First Name" onChange={onChangeHandlerWelcome} />
+                <span className={styled.wrapper}>
+                    <div>
+                        <label htmlFor="firstName">First Name: </label>
+                        <input type="text"  name="firstName" value={form.firstName} placeholder="First Name" onChange={onChangeHandlerWelcome} />
+                        {
+                            error.firstName ? "" : <span>Please enter a first name</span>
+                        }
+                    </div>
+
+                    <div>
+                        <label htmlFor="lastName">Last Name: </label>
+                        <input type="text"  name="lastName" value={form.lastName} placeholder="Last Name" onChange={onChangeHandlerWelcome} />
+                        {
+                            error.lastName ? "" : <span>Please enter a last name</span>
+                        }
+                    </div>
+                </span>
+
+                <div className={styled.checkbox}>
+                    <label htmlFor="same" onClick={onClickHandler}>Home and Mailing Address are the Same: </label>
                     {
-                        error.firstName ? "" : <span>Please enter a first name</span>
+                        form.same ? <div onClick={onClickHandler} className={styled.checkmark}></div> : <div onClick={onClickHandler} className={styled.uncheckmark}></div>
                     }
                 </div>
-
-                <div>
-                    <label htmlFor="lastName">Last Name: </label>
-                    <input type="text"  name="lastName" value={form.lastName} placeholder="Last Name" onChange={onChangeHandlerWelcome} />
-                    {
-                        error.lastName ? "" : <span>Please enter a last name</span>
-                    }
-                </div>
-
-                <div>
-                    <label htmlFor="address">Living Address: </label>
-                    <input type="text"  name="address" value={form.address} placeholder="Address" onChange={onChangeHandlerWelcome} />
-                    {
-                        error.address ? "" : <span>Please enter an address</span>
-                    }
-                </div>
-                <div>
-                    <label htmlFor="same">Mailing Addresss Same: </label>
-                    <input type="checkbox"  defaultChecked="checked" name="same" value={form.mailing} onChange={onCheckboxHandlerWelcome} />
-                </div>
-
                 {
                     form.same === false ? <div>
                         <label htmlFor="mailing">Mailing Address: </label>
                         <input type="text"  name="mailing" value={form.mailing} placeholder="Mailing Address" onChange={onChangeHandlerWelcome} />
                     </div> : ""
                 }
+
+                <div>
+                    <label htmlFor="address">Home Address: </label>
+                    <input type="text"  name="address" value={form.address} placeholder="Address" onChange={onChangeHandlerWelcome} />
+                    {
+                        error.address ? "" : <span>Please enter an address</span>
+                    }
+                </div>
                 
-                <div>
-                    <label htmlFor="email">Email: </label>
-                    <input type="email"  name="email" value={form.email} placeholder="Email" onChange={ValidateEmail} />
-                    {
-                        error.email ? "" : <span>Please enter an email</span>
-                    }
-                </div>
+                <span className={styled.wrapper}>
+                    <div>
+                        <label htmlFor="email">Email: </label>
+                        <input type="email"  name="email" value={form.email} placeholder="Email" onChange={ValidateEmail} />
+                        {
+                            error.email ? "" : <span>Please enter an email</span>
+                        }
+                    </div>
+                    <div>
+                        <label htmlFor="phone">Phone Number: </label>
+                        <input type="phone"  name="phone" value={form.phone} placeholder="000-000-0000" onChange={onChangeHandlerWelcome} />
+                        {
+                            error.phone ? "" : <span>Please enter a phone number</span>
+                        }
+                    </div>
+                </span>
 
-                <div>
-                    <label htmlFor="phone">Phone Number: </label>
-                    <input type="phone"  name="phone" value={form.phone} placeholder="000-000-0000" onChange={onChangeHandlerWelcome} />
-                    {
-                        error.phone ? "" : <span>Please enter a phone number</span>
-                    }
-                </div>
-
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password"  name="password" value={form.password} placeholder="Password" onChange={onPasswordHandler} />
-                    {
-                        error.password ? "" : <span>Please enter a password</span>
-                    }
-                </div>
-
-                <div>
-                    <label htmlFor="confirmPassword">Confirm Password: </label>
-                    <input type="password"  name="confirmPassword" value={form.confirmPassword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} />
-                    {
-                        error.confirmPassword ? "" : <span>Passwords must match</span>
-                    }
-                </div>
+                <span className={styled.wrapper}>
+                    <div>
+                        <label htmlFor="password">Password: </label>
+                        <input type="password"  name="password" value={form.password} placeholder="Password" onChange={onPasswordHandler} />
+                        {
+                            error.password ? "" : <span>Please enter a password</span>
+                        }
+                    </div>
+                    <div>
+                        <label htmlFor="confirmPassword">Confirm Password: </label>
+                        <input type="password"  name="confirmPassword" value={form.confirmPassword} placeholder="Confirm Password" onChange={onConfirmPasswordHandler} />
+                        {
+                            error.confirmPassword ? "" : <span>Passwords must match</span>
+                        }
+                    </div>
+                </span>
 
                 
                 {

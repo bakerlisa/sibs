@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext,useRef } from 'react';
 import UserContext from '../context/UserContext';
 import Parents from './Parents';
 import FileBase64 from 'react-file-base64';
+import styled from '../css/ComponentsCSS/AddChild.module.css'
 
 const AddChild = (props) => {
     const fileInput = useRef(null);
@@ -33,6 +34,13 @@ const AddChild = (props) => {
 
     const onChildChangeHandler = (event) => {
         setChild({ ...child,[event.target.name]: event.target.value })
+        if(event.target.name in error){
+            if(event.target.value.length >= lengths[event.target.name]){
+                setError({...error,[event.target.name]:true})
+            }else{
+                setError({...error,[event.target.name]:false})
+            }
+        }
     }
 
     const onParentChangeHandler = (event) => {
@@ -59,6 +67,9 @@ const AddChild = (props) => {
                 }
             }
         })
+        .catch(err => {
+            setDBError(err.response.data.error.errors)
+        });
         
     }
 
@@ -72,25 +83,23 @@ const AddChild = (props) => {
 
     return(
         <div>
-            {
-                message.length > 0 ? message : ""
-            }
             <h2>Add Child</h2>
-            <p>Mainly for minors</p>
+            <p className={styled.subtitle}>Mainly for minors</p>
+            {
+                message.length > 0 ? <div className="success">{message}</div> : ""
+            }
             <form onSubmit={onChildSubmit}>
+                <span className={styled.wrapper}>
+                    <div>
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" name="name" onChange={onChildChangeHandler} placeholder="Name"/>
+                    </div>
+                    <div>
+                        <label htmlFor="birthday">Birthday</label>
+                        <input type="date" name="birthday" onChange={onChildChangeHandler} />
+                    </div>
+                </span>
                 <div>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" onChange={onChildChangeHandler} />
-                </div>
-                <div>
-                    <label htmlFor="birthday">Birthday</label>
-                    <input type="date" name="birthday" onChange={onChildChangeHandler} />
-                </div>
-                <div>
-                    <FileBase64 multiple={ false } onDone={ ({base64}) =>  onImageChangeHandler(base64) } />
-                </div>
-                <div>
-
                     <label htmlFor="parent">Other Parent: </label>
                     <select name="parent" defaultValue="empty" onChange={onParentChangeHandler}>
                         <option value="empty" disabled>Other Parent...</option>
@@ -101,10 +110,15 @@ const AddChild = (props) => {
                         }
                     </select>
                 </div>
+                <div className={styled.imgUp}>
+                    <FileBase64 multiple={ false } onDone={ ({base64}) =>  onImageChangeHandler(base64) } />
+                </div>
 
                 <input type="hidden" name="parentTwo" value={userIDs} />
 
-                <input type="submit" value="Add Child" />
+                {
+                    Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Add Child" className="submitBlue" /> : <input type="submit" value="Add Child" disabled className="disabled" />
+                }
             </form>
         </div>
     );

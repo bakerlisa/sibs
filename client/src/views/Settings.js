@@ -6,8 +6,8 @@ import UserContext from '../context/UserContext';
 const Settings = (props) => {
     const { user, setUser, userIDs } = useContext(UserContext)
     return(
-        <div>
-            <h1>Edit Settings For: {user.firstName} {user.lastName}</h1>
+        <div className="container">
+            <h1>Settings: <span>{user.firstName} {user.lastName}</span></h1>
             <FamilyForm />
         </div>
     )

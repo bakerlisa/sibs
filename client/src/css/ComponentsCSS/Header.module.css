@@ -1,5 +1,5 @@
 /* HEADER COMPONENTS CSS */
-.navWrapper{padding: 25px 50px; background-color:var(--orange); display: flex;align-items: center;justify-content: start;flex-wrap: wrap;}
+.navWrapper{padding: 10px 50px; background-color:var(--orange); display: flex;align-items: center;justify-content: start;flex-wrap: wrap;}
 
 /* logo */
 .logo{color:var(--white); font-family: 'Pacifico', cursive; font-size: 45px; width: 100px;}

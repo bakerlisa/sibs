@@ -13,11 +13,11 @@ const Find = (props) => {
     }, []);
 
     return(
-        <div>
+        <div className="container">
             <h1>Find Family Members</h1>
             <div className="famWrp">
                 {
-                    allUsers.length <= 1 ? "Hmm...we can't seem to find more people. Come back later!" : ""
+                    allUsers.length <= 1 ? <h3>Hmm...we can't seem to find more people. Come back later!</h3> : ""
                 }
                 {
                     allUsers.map((item,i) => {

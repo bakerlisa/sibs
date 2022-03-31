@@ -3,13 +3,12 @@ import axios from 'axios';
 import FileBase64 from 'react-file-base64';
 import UserContext from '../context/UserContext';
 import { useHistory } from 'react-router-dom';
+import styled from '../css/ComponentsCSS/ImageUploader.module.css'
 
 const ImageUploader = (props) => {
     const history = useHistory();
-    const [file, setFile] = useState()
-    const [img,setImg] = useState("")
-    const [imageError,setImageError] = useState("")
     const [form,setForm] = useState()
+    const [imageError,setImageError] = useState("")
     const [success,setSuccess] = useState("")
     const fileInput = useRef(null);
 
@@ -28,9 +27,9 @@ return (
             
         {
             success.length > 0 ? <div className="success">{success}</div> : ""
-        }
-
-        <form onSubmit={handleSubmit}><FileBase64 multiple={ false } onDone={ ({base64}) =>  setForm({ ...form, image:base64 }) } /> <button type="submit">Upload Image</button> </form> 
+        }   
+            
+        <form className={styled.imageContWrp} onSubmit={handleSubmit}><FileBase64 multiple={ false } onDone={ ({base64}) =>  setForm({ ...form, image:base64 }) } /> <button type="submit">Upload Image</button> </form> 
     </>
     );
 }

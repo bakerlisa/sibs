@@ -8,7 +8,7 @@ GLOBAL STYLES
   --black:#260104;
   --gray:#ececec;
   --orange:#F2784B;
-  --purple:#51548C;
+  --blue:#51548C;
   --pink:#8C3E5B;
   --red:#BF0B1A;
     --dk_red:#730710;
@@ -21,7 +21,7 @@ body{ position: relative;
 }
 /* body:before{content:''; height:100%; width: 63%; background-color:#F9F9F9; position: absolute; top: 0;right: 0; } */
 h1{font-size: 65px; margin: 0;}
-  h1 span{text-transform: capitalize;}
+  h1 span{text-transform: capitalize; }
 h2{font-size: 30px; font-weight: 600; text-transform: uppercase;}
 h3{font-weight: 500; margin: 0; font-size: 22px;}
 
@@ -42,25 +42,45 @@ h3{font-weight: 500; margin: 0; font-size: 22px;}
   /* EDIT */
   .edit{text-transform: uppercase; padding: 15px; font-size: 16px; display: block; text-decoration: none;font-weight: 600; letter-spacing: 1px; background-color:var(--md_blue); max-width: 200px; color:var(--white); margin: 0 auto; border: solid 2px var(--md_blue); transition: all .25s ease-out;}
   .edit:hover{transition: all .25s ease-out; background-color: transparent; color:var(--md_blue);}
-/* CONTAINER */
-.container{max-width: 1200px; margin: 0 auto;}
+
+  /* CONTAINER */
+.container{max-width: 1200px; margin: 0 auto; padding: 50px;}
+.flex{display: flex;align-items: center;justify-content: center;flex-wrap: wrap;}
+
+.col-2{width: 50%; padding: 25px;}
 
 /* FORM */
 form{max-width: 600px; margin: 0 auto;}
 form label{display: block;text-align-last: left; font-weight: 600;}
+form input{border:none; background-color:var(--white); padding: 10px; border-radius:5px;}
 form input,form select{width: 100%; padding: 10px;}
-  form input:focus,form select:focus{outline: none; border: solid 2px var(--green);}
+  form input:focus,form select:focus{outline: none; }
 form .checkbox{display: flex;align-items: center;justify-content: start;flex-wrap: wrap; margin: 20px 0;}
 form .checkbox input{width: 25px;margin: 0; height: 18px; width: 18px; margin-left: 15px;}
+form select{border:none}
+/* submit */
+form input.disabled{background-color:var(--gray);}
 form .submit{background-color:var(--orange); color:var(--white); text-transform: uppercase; font-weight: 400; letter-spacing: 1px; border: none;; padding: 15px;}
-form .submit:hover{cursor: pointer; opacity: .75;}
+form .submitBlue{background-color:var(--blue); color:var(--white); text-transform: uppercase; font-weight: 400; letter-spacing: 1px; border: none;; padding: 15px;}
+form .submit:hover, form .submitBlue:hover{cursor: pointer; opacity: .75;}
   input .disabled{background-color:var(--red); opacity: 0.25;}
-  /* validations */
+
+  /* validation messages */
   form > div{ margin-bottom: 20px;}
   form > div > span{text-align-last: left;}
-  input + span,textarea + span,select + span{display: block; max-height:0; height:100%; overflow: hidden; transition: all .2s ease-in;}
+  input + span,textarea + span,select + span{display: block; max-height:0; height:100%; overflow: hidden; text-align: left; transition: all .2s ease-in;}
   input:focus + span,textarea:focus + span,select:focus + span{color:var(--red); max-height:50px; transition: all .2s ease-in;}
 
+  /* message */
+  .success{color:var(--blue); font-weight: 600; padding-bottom: 10px;}
+
+
   /* Database Errors */
-  .errWrp{ color:var(--red);}
+  .errWrp{ color:var(--red); font-weight: 400;}
   .errWrp h4{margin:0 ;}
+
+
+  @media all and (max-width:1000px){
+    .container{padding: 25px;}
+    .col-2{width: 100%; padding: 25px;}
+  }
