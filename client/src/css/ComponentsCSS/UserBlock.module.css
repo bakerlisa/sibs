@@ -3,5 +3,6 @@
 .imgWrp:before{content:''; height:170px; width: 170px; position: absolute; top: 9px;left: 0; right: 0; margin: 0 auto; border:solid 5px var(--pink); border-radius:50% }
 .UserBlock img{border-radius: 50%; padding: 25px; height: 200px; width: auto; position: relative;}
 .UserBlock .name{font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 18px; margin: 0;}
+.UserBlock .name > span{padding: 0 5px; font-weight: 400;} 
 .UserBlock .birthday{margin-top: 0;}
 

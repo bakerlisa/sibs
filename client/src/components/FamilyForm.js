@@ -45,6 +45,7 @@ const FamilyForm = props => {
     }
 
     const onChangeHandlerWelcome = (event) => {
+        console.log("change")
         setForm({...form,[event.target.name]: event.target.value})
         
         if(event.target.name in error){
@@ -70,8 +71,8 @@ const FamilyForm = props => {
 
         axios.patch(`http://localhost:8000/api/update/user/${userIDs}`, form).then(response=>{
             setMessage("Personal Info has been updated")
+            setUser(response.data.user)
         })
-
         .catch(err => {
             setDBError(err.response.data.error.errors)
         });
@@ -81,7 +82,7 @@ const FamilyForm = props => {
         axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
             setForm(response.data.user)
         })
-    }, [userIDs,user]);
+    }, [userIDs]);
 
     return(
         <>
@@ -112,6 +113,17 @@ const FamilyForm = props => {
                             {
                                 error.lastName ? "" : <span>Please enter a last name</span>
                             }
+                        </div>
+                    </span>
+
+                    <span className={styled.wrapper}>
+                        <div>
+                            <label htmlFor="madian">Madian Name: </label>
+                            <input type="text"  name="madian" value={form.madian} placeholder="Madian Name" onChange={onChangeHandlerWelcome} />
+                        </div>
+                        <div>
+                            <label htmlFor="birthday">Birthday: </label>
+                            <input type="date"  name="birthday" value={form.birthday} onChange={onChangeHandlerWelcome} />
                         </div>
                     </span>
 
@@ -157,10 +169,6 @@ const FamilyForm = props => {
                         <input type="phone"  name="phone" value={form.phone} onChange={onChangeHandlerWelcome} />
                     </div>
                 </span>
-                <div>
-                    <label htmlFor="birthday">Birthday: </label>
-                    <input type="date"  name="birthday" value={form.birthday} onChange={onChangeHandlerWelcome} />
-                </div>
 
                 {
                     Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Update Account" className="submit" /> : <input type="submit" value="Update Account" disabled className="disabled" />

@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import React, { useContext,useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -6,13 +5,13 @@ import UserContext from '../context/UserContext';
 
 const WelcomeForm = props => {
     const history = useHistory();
-    const { user, setUser, setUserID } = useContext(UserContext)
+
+    const { setUser } = useContext(UserContext)
     const [errMessage, setErrMessage] = useState(" ")
     
     const [dbError,setDBError] = useState({ id:0 })
     var errorSize = Object.keys(dbError).length;
     
-    // const history = useHistory();
     const [login,setLogin] = useState({ })
 
     const [error,setError] = useState({
@@ -53,8 +52,10 @@ const WelcomeForm = props => {
             if(response.data.user.length <= 0){
                 setErrMessage("Credeitnals don't match, try again")
             }else{
+                console.log(response.data.user[0])
                 setUser(response.data.user[0])
                 localStorage.setItem("userID",response.data.user[0]._id);
+                // history.push('/')
             }
         })
         .catch(err => {
@@ -77,7 +78,7 @@ const WelcomeForm = props => {
 
                 <div>
                     <label htmlFor="email">Email: </label>
-                    <input type="text"  name="email" value={login.email} placeholder="Email" onChange={ValidateEmail} />
+                    <input type="text"  name="email" placeholder="Email" onChange={ValidateEmail} />
                     {
                         error.email ? "" : <span>Please enter an email</span>
                     }
@@ -85,7 +86,7 @@ const WelcomeForm = props => {
 
                 <div>
                     <label htmlFor="password">Password: </label>
-                    <input type="password"  name="password" value={login.password} placeholder="Password" onChange={onChangeHandler} />
+                    <input type="password"  name="password" placeholder="Password" onChange={onChangeHandler} />
                     {
                         error.password ? "" : <span>Please enter a password</span>
                     }

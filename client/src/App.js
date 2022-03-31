@@ -22,10 +22,12 @@ function App() {
   const [spouseIDs,setSpouseIds] = useState([])
 
   useEffect(() => {
+    if(userIDs){
       axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
           setUser(response.data.user)
           setSpouseIds(response.data.user.spouse)
         })
+    }
   }, [userIDs,user]);
 
   return (
@@ -39,7 +41,7 @@ function App() {
         <Route exact path="/">
           <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs }}>
           {
-            userIDs ? <Dashboard /> : <Login />
+            userIDs  ? <Dashboard /> : <Login />
           }
           </UserContext.Provider>
         </Route>
@@ -47,14 +49,18 @@ function App() {
         {/* Settings */}
         <Route exact path="/settings">
           <UserContext.Provider value={{ user, setUser, userIDs }}>
-            <Settings />
+          {
+            userIDs  ? <Settings /> : <Redirect to="/" /> 
+          }
           </UserContext.Provider>
         </Route>
 
         {/* Add Fmaily Member */}
         <Route exact path="/find">
           <UserContext.Provider value={{ user, setUser, userIDs }}>
-            <Find />
+            {
+              userIDs  ? <Find /> : <Redirect to="/" /> 
+            }
           </UserContext.Provider>
         </Route>
 
@@ -67,11 +73,13 @@ function App() {
           <Explain />
         </Route>
 
-        <Route><Redirect to="/404" /></Route>
+      <Route><Redirect to="/404" /></Route>
+      
       </Switch>
+
       <UserContext.Provider value={{ userIDs }}>
         <Footer/>
-        </UserContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

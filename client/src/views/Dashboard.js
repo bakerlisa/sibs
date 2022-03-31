@@ -10,6 +10,7 @@ const Dashboard = (props) => {
         <div className="smallContainer">
             <h1>Welcome Back <span> {user.firstName} </span>!</h1> 
             <h3>Your excuess for missing birthdays is now over. Wan Wan Wan</h3>
+            
             {/* if therse's a spouse */}
             {
                 spouseIDs.length === 0 ? "" : <>
@@ -22,7 +23,12 @@ const Dashboard = (props) => {
                         }
                     </div> 
                 </> 
-            }   
+            } 
+
+            {/* if Children */}
+
+            {/* if parents */}
+
         </div>
     )
 }
