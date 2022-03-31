@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Kids from '../components/Kids';
 import Spouse from '../components/Spouse';
 import UserContext from '../context/UserContext';
 import styled from '../css/ViewsCSS/Dashboard.module.css';
 
 const Dashboard = (props) => {
-    const { user, setUser, userIDs, spouseIDs } = useContext(UserContext)
+    const { user, spouseIDs } = useContext(UserContext)
 
     return(
         <div className="smallContainer">
@@ -26,6 +27,10 @@ const Dashboard = (props) => {
             } 
 
             {/* if Children */}
+            
+                <Kids />
+            
+            
 
             {/* if parents */}
 

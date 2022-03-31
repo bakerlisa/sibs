@@ -38,16 +38,25 @@ module.exports.EmailUser = (req,res) => {
 }
 
 // ADDs Kids to parents
+// module.exports.AddChildUser = (req,res) => {
+//     User.findOneAndUpdate({ _id: req.params.id},
+//         { $addToSet: { kids: req.body.kids[0]  } })
+//     .then(foundUser => res.json({ user: foundUser}))
+//     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+// }
 module.exports.AddChildUser = (req,res) => {
     User.findOneAndUpdate({ _id: req.params.id},
-        { $addToSet: { kids: req.body.kids[0]  } })
+        { $push: { kids: {name: req.body.name, birthday: req.body.birthday, image: req.body.image}  } })
     .then(foundUser => res.json({ user: foundUser}))
     .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
 }
 
-
-
-
+module.exports.DeleteChildUser = (req,res) => {
+    User.updateOne({  _id: req.params.id},
+        { $pull: { kids: {name: req.body.name, birthday: req.body.birthday, image: req.body.image}  } })
+    .then(foundUser => res.json({ user: foundUser}))
+    .catch(err => res.status(400).json({ message: 'Something went wrong logging in', error: err }));
+}
 
 //FAMILY LINK
 module.exports.SpouseLinkUser = (req,res) => {
@@ -56,13 +65,6 @@ module.exports.SpouseLinkUser = (req,res) => {
     .then(spouseUser => res.json({ user: spouseUser}))
     .catch(err => res.status(400).json({ message: 'Person is already a spouse', error: err }));
 }
-
-
-
-
-
-
-
 
 // CREATE
 module.exports.createUser = (req,res) => {

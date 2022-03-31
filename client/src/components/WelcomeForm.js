@@ -52,11 +52,10 @@ const WelcomeForm = props => {
             if(response.data.user.length <= 0){
                 setErrMessage("Credeitnals don't match, try again")
             }else{
-                console.log(response.data.user[0])
                 setUser(response.data.user[0])
                 localStorage.setItem("userID",response.data.user[0]._id);
-                // history.push('/')
-            }
+                window.location.reload(false);
+            }  
         })
         .catch(err => {
             setDBError(err.response.data.error.errors)
