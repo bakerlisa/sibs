@@ -13,7 +13,7 @@ import { faCakeCandles,faTrashCan,faPencil,faXmark } from '@fortawesome/free-sol
 
 const Kids = (props) => {
     const { users,userIDs,setUser } = useContext(UserContext)
-    const [editTrigger,setEditTrigger] = useState(false)
+
     const [kidEdit,setKidEdit] = useState({
         name:"",
         birthday:"",
@@ -47,7 +47,6 @@ const Kids = (props) => {
     const onChildEditSubmit = (event) =>{
         event.preventDefault();
         
-        console.log(current)
         axios.patch(`http://localhost:8000/api/update/user/${userIDs}`,kidEdit).then(response=>{
             setUser(response.data.user)
             setKids(response.data.user.kids)
@@ -60,8 +59,6 @@ const Kids = (props) => {
     const onImageChangeHandler = (newImage) => {
         console.log(kidEdit.index)
         setKidEdit({ ...kidEdit,image: newImage})
-
-
     }
 
     const onChildEditHandler = (event) => {

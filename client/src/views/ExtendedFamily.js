@@ -62,7 +62,7 @@ const ExtendedFamily = (props) => {
             }
             
             {/* Minor Kids */}
-            <Kids />
+            
             {
                 kidsIds.length === 0 ? "" : <>
                     {
