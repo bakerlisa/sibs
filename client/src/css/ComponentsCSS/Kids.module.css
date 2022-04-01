@@ -1,8 +1,9 @@
-.kidsWrp{width: 100%; text-align: left; padding-left: 150px; display: flex;align-items: center;justify-content: start;   flex-wrap: wrap; margin-bottom: 25px;}
+.kidsWrp{width: 100%; text-align: left; margin-top: 25px; padding:0 0 0  115px; display: flex;align-items: center;justify-content: start;  flex-wrap: wrap; }
 .kidsTitle{text-align: left; margin-bottom: 25px; padding-left: 150px; }
-.img{border-radius: 50%; height:75px;}
+.imgCol{width: 150px;}
+.img{border-radius: 50%; height:100px;}
 
-.txtWrp{width: calc(100% - 300px); padding-left: 25px;}
+.txtWrp{width: calc(100% - 400px); padding-left: 25px;}
 .txtWrp .name{font-weight: 600; font-size: 18px; margin: 0;}
 
 .actions{ width: 200px;}

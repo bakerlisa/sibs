@@ -1,6 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Children, useContext, useEffect, useState } from 'react';
+
 import Kids from '../components/Kids';
 import Spouse from '../components/Spouse';
+import Child from '../components/Child';
+
+
 import UserContext from '../context/UserContext';
 import styled from '../css/ViewsCSS/Dashboard.module.css';
 
@@ -31,29 +35,27 @@ const Dashboard = (props) => {
                 kidsIds.length >= 1 ? <h2 className={styled.kidsTitle}>What's this  Kids! </h2> : ""
             }
             <Kids />
+            
             {
                 kidsIds.length === 0 ? "" : <>
-                    <div className={styled.kids}>
-                        {
-                            kidsIds.map((item,i) => {
-                                return <Spouse key={i} id={item} />
-                            })
-                        }
-                    </div> 
+                    {
+                        kidsIds.map((item,i) => {
+                            return <Child key={i} id={item}/>
+                        })
+                    }
                 </> 
             }
+
             {
                 stepKidsIds.length >= 1 ? <h3 className={styled.kidsTitle}>Step Kids</h3> : ""
             }
             {
                 stepKidsIds.length === 0 ? "" : <>
-                    <div className={styled.kids}>
-                        {
-                            stepKidsIds.map((item,i) => {
-                                return <Spouse key={i} id={item} />
-                            })
-                        }
-                    </div> 
+                    {
+                        stepKidsIds.map((item,i) => {
+                            return <Child key={i} id={item}/>
+                        })
+                    }
                 </> 
             }
             

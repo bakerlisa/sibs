@@ -1,0 +1,24 @@
+.childWrp{width: 100%; padding: 0 100px; display: flex; align-items: center; justify-content: start; margin: 25px 0; width: 100%;}
+
+/* img */
+.childWrp .imgColumn{width: 175px;}
+.childWrp .imgColumn .img{border-radius:50%; height: 100px; width: auto; margin-right: 25px;}
+.childWrp svg{padding-right: 10px;}
+
+/* name/birthday */
+.childWrp .contentWrp{width: calc(50% - 50px); text-align: left; padding: 0 10px;}
+.childWrp .contentWrp .name{font-size: 25px;font-weight: 600;width: 100%; margin: 0 0 10px;}
+.childWrp .contentWrp .birthday{margin-top: 0;}
+.childWrp .contentWrp .birthday svg{color:var(--pink);}
+.childWrp .contentWrp span a{color:var(--orange); text-decoration: none; display: block; padding-bottom: 5px;}
+.childWrp .contentWrp span a:hover{color:var(--black);}
+
+/* addressWrp */
+.childWrp .addressWrp{width: calc(50% - 50px);text-align: left; padding: 0 10px;}
+.childWrp .addressWrp a.address{display: block;  color:var(--orange); text-decoration: none;padding: 0px 0px 0   25px;   border-radius: 5px;  transition: all .25s ease-in;}
+.childWrp .addressWrp .address > span{padding-left: 25px; display: block;}
+.childWrp .addressWrp a.address:hover{border-radius: 0; background-color:transparent; color:var(--orange); transition: all .25s ease-in;}
+
+@media all and (max-width:1000px){
+    .childWrp .addressWrp,.childWrp .contactInfo,.childWrp .contentWrp{width: 100%; padding: 0;}
+}

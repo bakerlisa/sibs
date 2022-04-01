@@ -1,0 +1,50 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import empty from '../img/empty.jpg';
+import styled from '../css/ComponentsCSS/Child.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+
+const Child = (props) => {
+    const [partner,setPartner] = useState({})
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/${props.id}`).then(response=>{
+            setPartner(response.data.user)
+        })
+    }, []);
+
+    return(
+        <div className={styled.childWrp}>
+            <div className={styled.imgColumn} >
+                {
+                    partner.image === 'empty.jpg' ? <img className={styled.img} src={empty} alt={partner.firstName} /> : <img className={styled.img} src={partner.image} alt={partner.firstName} />
+                }
+                
+            </div>
+                <div className={styled.contentWrp}>
+                    <p className={styled.name} >{partner.firstName} {partner.lastName}</p>
+                    {
+                        partner.birthday ? <p className={styled.birthday}><FontAwesomeIcon icon={faCakeCandles} /> Birthday: {partner.birthday}</p> : ""
+                    }
+                    <span>
+                        <a href={`tel:${partner.phone}`}><span><FontAwesomeIcon icon={faPhone} /></span> {partner.phone}</a>
+                        <a href="mailto:{partner.email}"><FontAwesomeIcon icon={faEnvelope} /> {partner.email}</a>
+                    </span> 
+                </div>
+                <div className={styled.addressWrp}>
+                    {
+                        partner.mailing != "true" ? <p className={styled.address}><strong><FontAwesomeIcon icon={faPaperPlane} />Mailing Address:</strong> <span>{partner.mailing}</span></p> : ""
+                    }
+                    <p className={styled.address}><strong><FontAwesomeIcon icon={faLocationDot} /> Home Address:</strong><br/> <span>{partner.address}</span></p>
+                    {
+                        partner.map ? <a className={styled.address} href={partner.map} target="_blank"> Directions</a> : ""
+                    } 
+                </div>
+            </div>
+                
+    )
+}
+
+export default Child;
