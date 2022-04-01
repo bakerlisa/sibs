@@ -10,7 +10,7 @@ const Error = (props) => {
             <h3 className={styled.subtitle}>I could try to explain this...or we could pretend it didn't happen</h3>
             <img className={styled.imgwrp} src={confused} alt="confused gif" />
             <Link to="/" className="button-lg">Pretend it didn't happen</Link>
-            <Link className={styled.explain} to="/explain" >Explain...</Link>
+            {/* <Link className={styled.explain} to="/explain" >Explain...</Link> */}
         </div>
     )
 }
