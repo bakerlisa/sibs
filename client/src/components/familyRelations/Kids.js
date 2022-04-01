@@ -5,7 +5,7 @@ import FileBase64 from 'react-file-base64';
 
 import empty from '../../img/empty.jpg';
 
-import styled from '../../css/ComponentsCSS/Kids.module.css'
+import styled from '../../css/ComponentsCSS/familyRelations/Kids.module.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles,faTrashCan,faPencil,faXmark } from '@fortawesome/free-solid-svg-icons'

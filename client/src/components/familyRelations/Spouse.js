@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import empty from '../../img/empty.jpg';
-import styled from '../../css/ComponentsCSS/Spouse.module.css'
+import styled from '../../css/ComponentsCSS/familyRelations/Spouse.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 

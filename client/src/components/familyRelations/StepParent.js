@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import empty from '../../img/empty.jpg';
-import styled from '../../css/ComponentsCSS/familyRelations/Parent.module.css'
+import styled from '../../css/ComponentsCSS/familyRelations/Spouse.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
-const Parent = (props) => {
+const StepParent = (props) => {
     const [partner,setPartner] = useState({})
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Parent = (props) => {
     }, []);
 
     return(
-        <div className={styled.parentWrp}>
+        <div className={styled.wrp}>
             {props.wrapper === "indent" ? <span></span>: ""} 
             <div className={styled.imgColumn} >
                 {
@@ -49,4 +49,4 @@ const Parent = (props) => {
     )
 }
 
-export default Parent;
+export default StepParent;

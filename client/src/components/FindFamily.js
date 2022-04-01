@@ -5,9 +5,9 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import AddChild from './AddChild';
 import ImageUploader from './ImageUploader.js';
-import styled from '../css/ComponentsCSS/FamilyFrom.module.css'
+import styled from '../css/ComponentsCSS/FindFamily.module.css'
 
-const FamilyForm = props => {
+const FindFamily = props => {
     const history = useHistory();
     
     const { user, setUser, userIDs } = useContext(UserContext)
@@ -183,4 +183,4 @@ const FamilyForm = props => {
     )
 }
 
-export default FamilyForm;
+export default FindFamily;

@@ -1,0 +1,27 @@
+.siblingWrp{width: 100%; display: flex; align-items: center; justify-content: start; margin: 25px 0; width: 100%;}
+.siblingWrp > span{width: 50px;}
+
+/* img */
+.siblingWrp .imgColumn{width: 175px;}
+.siblingWrp .imgColumn .img{border-radius:50%; height: 150px; width: auto; margin-right: 25px;}
+svg{padding-right: 10px;}
+
+/* name/birthday */
+.siblingWrp .name{font-size: 25px;font-weight: 600;width: 100%; margin: 0 0 10px;}
+.siblingWrp .birthday{margin-top: 0;}
+.siblingWrp .birthday svg{color:var(--pink);}
+
+/* contaccInfo */
+.siblingWrp .contactInfo{width: calc(33.33% - 50px); padding: 0 10px; text-align: left;}
+.siblingWrp .contactInfo span a{color:var(--orange); text-decoration: none; display: block; padding-bottom: 5px;}
+.siblingWrp .contactInfo span a:hover{color:var(--black);}
+
+/* addressWrp */
+.siblingWrp .addressWrp{width: calc(33.33% - 50px);text-align: left; padding: 0 10px;}
+.siblingWrp .addressWrp a.address{display: block; background-color:var(--orange); color:var(--white); text-decoration: none;padding: 10px 25px;  text-align: center; border-radius: 5px; border-bottom:solid 2px var(--orange);  transition: all .25s ease-in;}
+.siblingWrp .addressWrp .address > span{padding-left: 25px; display: block;}
+.siblingWrp .addressWrp a.address:hover{border-radius: 0; background-color:transparent; color:var(--orange); transition: all .25s ease-in;}
+
+@media all and (max-width:1000px){
+    .addressWrp,.contactInfo,.contentWrp{width: 100%; padding: 0;}
+}

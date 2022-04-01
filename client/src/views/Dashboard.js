@@ -7,6 +7,9 @@ import Child from '../components/familyRelations/Child';
 
 import UserContext from '../context/UserContext';
 import styled from '../css/ViewsCSS/Dashboard.module.css';
+import Parent from '../components/familyRelations/Parent';
+import StepParent from '../components/familyRelations/StepParent';
+import Sibling from '../components/familyRelations/Sibling';
 
 const Dashboard = (props) => {
     const { user, spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds,stepKidsIds,stepSiblingIds } = useContext(UserContext)
@@ -66,7 +69,7 @@ const Dashboard = (props) => {
                         <h2 className={styled.dashTitle}>Meet the Parents</h2>
                         {
                             parentsIds.map((item,i) => {
-                                return <Spouse key={i} id={item} />
+                                return <Parent key={i} id={item} />
                             })
                         }
                     </div> 
@@ -79,7 +82,7 @@ const Dashboard = (props) => {
                         <h3>Step Parent(s)</h3>
                         {
                             stepParentsIds.map((item,i) => {
-                                return <Spouse key={i} id={item} wrapper="indent" />
+                                return <StepParent key={i} id={item} wrapper="indent" />
                             })
                         }
                     </div> 
@@ -93,7 +96,7 @@ const Dashboard = (props) => {
                         <h2 className={styled.dashTitle}>Siblings</h2>
                         {
                             siblingIds.map((item,i) => {
-                                return <Spouse key={i} id={item} />
+                                return <Sibling key={i} id={item} />
                             })
                         }
                     </div> 

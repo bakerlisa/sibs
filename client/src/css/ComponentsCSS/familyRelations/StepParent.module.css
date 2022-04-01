@@ -1,0 +1,28 @@
+.stepparentWrp{width: 100%; display: flex; align-items: center; justify-content: start; margin: 25px 0; width: 100%;}
+.stepparentWrp > span{width: 50px;}
+
+/* img */
+.stepparentWrp .imgColumn{width: 175px;}
+.stepparentWrp .imgColumn .img{border-radius:50%; height: 150px; width: auto; margin-right: 25px;}
+svg{padding-right: 10px;}
+
+/* name/birthday */
+
+.stepparentWrp .name{font-size: 25px;font-weight: 600;width: 100%; margin: 0 0 10px;}
+.stepparentWrp .birthday{margin-top: 0;}
+.stepparentWrp .birthday svg{color:var(--pink);}
+
+/* contaccInfo */
+.stepparentWrp .contactInfo{width: calc(33.33% - 50px); padding: 0 10px; text-align: left;}
+.stepparentWrp .contactInfo span a{color:var(--orange); text-decoration: none; display: block; padding-bottom: 5px;}
+.stepparentWrp .contactInfo span a:hover{color:var(--black);}
+
+/* addressWrp */
+.stepparentWrp .addressWrp{width: calc(33.33% - 50px);text-align: left; padding: 0 10px;}
+.stepparentWrp .addressWrp a.address{display: block; background-color:var(--orange); color:var(--white); text-decoration: none;padding: 10px 25px;  text-align: center; border-radius: 5px; border-bottom:solid 2px var(--orange);  transition: all .25s ease-in;}
+.stepparentWrp .addressWrp .address > span{padding-left: 25px; display: block;}
+.stepparentWrp .addressWrp a.address:hover{border-radius: 0; background-color:transparent; color:var(--orange); transition: all .25s ease-in;}
+
+@media all and (max-width:1000px){
+    .stepparentWrp .contactInfo,.stepparentWrp .contentWrp{width: 100%; padding: 0;}
+}
