@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import empty from '../../img/empty.jpg';
 import styled from '../../css/ComponentsCSS/familyRelations/StepSibling.module.css'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
 const Spouse = (props) => {
     const [stepSibling,setStepSibling] = useState({})
+    const userIDs = localStorage.getItem('userID');
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/${props.id}`).then(response=>{
@@ -20,7 +24,15 @@ const Spouse = (props) => {
             {props.wrapper === "indent" ? <span></span>: ""} 
             <div className={styled.imgColumn} >
                 {
-                    stepSibling.image === 'empty.jpg' ? <img className={styled.img} src={empty} alt={stepSibling.firstName} /> : <img className={styled.img} src={stepSibling.image} alt={stepSibling.firstName} />
+                    userIDs === partner._id ? <Link to={`/`}>
+                    {
+                        partner.image === 'empty.jpg' ? <img className={styled.img} src={empty} alt={partner.firstName} /> : <img className={styled.img} src={partner.image} alt={partner.firstName} />
+                    }
+                    </Link> : <Link to={`/extendedFamily/${partner._id}`}>
+                    {
+                        partner.image === 'empty.jpg' ? <img className={styled.img} src={empty} alt={partner.firstName} /> : <img className={styled.img} src={partner.image} alt={partner.firstName} />
+                    }
+                    </Link>
                 }
                 
             </div>

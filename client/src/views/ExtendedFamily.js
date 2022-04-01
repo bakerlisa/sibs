@@ -1,8 +1,8 @@
-import React, { Children, useContext, useEffect, useState } from 'react';
+import React, { Children, useEffect, useState } from 'react';
+import { useParams } from "react-router";
+import axios from 'axios';
 
 import styled from '../css/ViewsCSS/Dashboard.module.css';
-
-import UserContext from '../context/UserContext';
 
 import Child from '../components/familyRelations/Child';
 import Kids from '../components/familyRelations/Kids';
@@ -11,12 +11,35 @@ import Sibling from '../components/familyRelations/Sibling';
 import Spouse from '../components/familyRelations/Spouse';
 import StepParent from '../components/familyRelations/StepParent';
 
-const Dashboard = (props) => {
-    const { user, spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds,stepKidsIds,stepSiblingIds } = useContext(UserContext)
+const ExtendedFamily = (props) => {
+    
+    const { id } = useParams();
+
+    const [extended,setExtended] = useState([])
+    const [spouseIDs,setSpouseIds] = useState([])
+    const [siblingIds,setSiblingIds] = useState([])
+    const [parentsIds,setParentsIds] = useState([])
+    const [stepParentsIds,setStepParentsIds] = useState([])
+    const [kidsIds,setKidsIds] = useState([])
+    const [stepKidsIds,setStepKidsIds] = useState([])
+    const [stepSiblingIds,setStepSibling] = useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/${id}`).then(response=>{
+            setExtended(response.data.user)
+            setSpouseIds(response.data.user.spouse)
+            setSiblingIds(response.data.user.siblings)
+            setParentsIds(response.data.user.parents)
+            setStepParentsIds(response.data.user.stepParents)
+            setKidsIds(response.data.user.children)
+            setStepKidsIds(response.data.user.stepKids)
+            setStepSibling(response.data.user.stepSibling)
+            })
+    }, [id]);
 
     return(
         <div className="smallContainer">
-            <h1>Welcome Back <span> {user.firstName} </span>!</h1> 
+            <h1> <span> {extended.firstName} {extended.lastName} </span> Family!</h1> 
             <h3 className={styled.subtitle}>Your excuess for missing birthdays is now over. Wan Wan Wan</h3>
             
             {/* Spouse */}
@@ -86,7 +109,7 @@ const Dashboard = (props) => {
                         <h3>Step Parent(s)</h3>
                         {
                             stepParentsIds.map((item,i) => {
-                                return <StepParent key={i} id={item} wrapper="indent" />
+                                return <StepParent key={i} id={item} />
                             })
                         }
                     </div> 
@@ -114,7 +137,7 @@ const Dashboard = (props) => {
                         <h3 className={styled.dashTitle}>Step/Half Siblings</h3>
                         {
                             stepSiblingIds.map((item,i) => {
-                                return <Spouse key={i} id={item} wrapper="indent" />
+                                return <Spouse key={i} id={item} />
                             })
                         }
                     </div> 
@@ -124,4 +147,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default Dashboard;
+export default ExtendedFamily;

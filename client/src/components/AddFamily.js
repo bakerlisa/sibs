@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React,{useContext, useState} from 'react';
-import UserContext from '../../context/UserContext';
-import styled from '../../css/ComponentsCSS/familyRelations/Sibling.module.css';
+import UserContext from '../context/UserContext';
+import styled from '../css/ComponentsCSS/AddFamily.module.css';
 
-const Sibling = (props) => {
+const AddFamily = (props) => {
     const { user, setUser, userIDs } = useContext(UserContext)
     const [form,setForm] = useState({})
     const [formError,setFormError] = useState(false)
@@ -89,7 +89,6 @@ const Sibling = (props) => {
                 <option value="stepParents">Step Parent</option>
             </select>
 
-
             {
                 formError ?  <input type="submit" value="Add As" className="submitPink"/> :  <input type="submit" value="Add As" disabled />
             }
@@ -97,4 +96,4 @@ const Sibling = (props) => {
     )
 }
 
-export default Sibling;
+export default AddFamily;

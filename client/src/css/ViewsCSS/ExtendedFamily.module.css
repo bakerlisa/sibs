@@ -1,0 +1,12 @@
+/* spouse */    
+h2{width: 100%; }
+h3{width: 100%; text-align: left; padding-left: 50px;}
+.subtitle{text-align: center;}
+.kidsTitle{padding-left: 100px; text-align: left;}
+.dashTitle{text-align: left;}
+.spouseWrp{display: flex; flex-wrap: wrap; align-items: start;justify-content: center;flex-wrap: wrap;}
+
+
+@media all and (max-width:1000px){
+    .spouseWrp{flex-direction: column;}
+}

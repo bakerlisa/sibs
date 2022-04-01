@@ -14,6 +14,7 @@ import Settings from './views/Settings';
 import Find from './views/Find';
 import Footer from './components/Footer';
 import Explain from './views/Explain';
+import ExtendedFamily from './views/ExtendedFamily';
 
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
         <Route exact path="/">
           <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds,stepKidsIds,stepSiblingIds }}>
           {
-            userIDs  ? <Dashboard /> : <Login />
+            userIDs ? <Dashboard /> : <Login />
           }
           </UserContext.Provider>
         </Route>
@@ -62,7 +63,7 @@ function App() {
         <Route exact path="/settings">
           <UserContext.Provider value={{ user, setUser, userIDs }}>
           {
-            userIDs  ? <Settings /> : <Redirect to="/" /> 
+            userIDs ? <Settings /> : <Redirect to="/" /> 
           }
           </UserContext.Provider>
         </Route>
@@ -72,6 +73,15 @@ function App() {
           <UserContext.Provider value={{ user, setUser, userIDs }}>
             {
               userIDs  ? <Find /> : <Redirect to="/" /> 
+            }
+          </UserContext.Provider>
+        </Route>
+
+        {/* Extended Family */}
+        <Route exact path="/extendedFamily/:id">
+          <UserContext.Provider value={{ user, setUser, userIDs }}>
+            {
+              userIDs  ? <ExtendedFamily /> : <Redirect to="/" /> 
             }
           </UserContext.Provider>
         </Route>
