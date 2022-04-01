@@ -1,8 +1,8 @@
 import React, { Children, useContext, useEffect, useState } from 'react';
 
-import Kids from '../components/Kids';
-import Spouse from '../components/Spouse';
-import Child from '../components/Child';
+import Kids from '../components/familyRelations/Kids';
+import Spouse from '../components/familyRelations/Spouse';
+import Child from '../components/familyRelations/Child';
 
 
 import UserContext from '../context/UserContext';

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React,{useContext, useEffect, useState} from 'react';
-import UserContext from '../context/UserContext';
+import UserContext from '../../context/UserContext';
 import FileBase64 from 'react-file-base64';
 
-import empty from '../img/empty.jpg';
+import empty from '../../img/empty.jpg';
 
-import styled from '../css/ComponentsCSS/Kids.module.css'
+import styled from '../../css/ComponentsCSS/Kids.module.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles,faTrashCan,faPencil,faXmark } from '@fortawesome/free-solid-svg-icons'

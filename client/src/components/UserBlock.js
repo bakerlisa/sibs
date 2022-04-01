@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../context/UserContext';
-import Sibling from './Sibling';
+import Sibling from './familyRelations/Sibling';
 import empty from '../img/empty.jpg';
 import styled from '../css/ComponentsCSS/UserBlock.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

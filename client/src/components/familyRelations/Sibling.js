@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React,{useContext, useState} from 'react';
-import UserContext from '../context/UserContext';
-import styled from '../css/ComponentsCSS/Sibling.module.css';
+import UserContext from '../../context/UserContext';
+import styled from '../../css/ComponentsCSS/Sibling.module.css';
 
 const Sibling = (props) => {
     const { user, setUser, userIDs } = useContext(UserContext)
