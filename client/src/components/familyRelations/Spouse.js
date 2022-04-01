@@ -12,11 +12,12 @@ import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fo
 const Spouse = (props) => {
     const [partner,setPartner] = useState({})
     const userIDs = localStorage.getItem('userID');
+    // 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${props.id}`).then(response=>{
-            setPartner(response.data.user)
-        });
+            axios.get(`http://localhost:8000/api/user/${props.id}`).then(response=>{
+                setPartner(response.data.user)
+            });
     }, []);
 
     return(
