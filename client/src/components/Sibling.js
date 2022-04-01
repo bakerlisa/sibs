@@ -50,8 +50,15 @@ const Sibling = (props) => {
             .catch(err => {
                 setDBError(err.response.data.message)
             });
-        }else  if(link === "kids"){
+        }else  if(link === "children"){
             axios.patch(`http://localhost:8000/api/update/user/kids/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
+        }else  if(link === "stepKids"){
+            axios.patch(`http://localhost:8000/api/update/user/stepKids/${userIDs}`,form).then(response=>{
                 console.log(response.data.user)
             })
             .catch(err => {
@@ -66,7 +73,7 @@ const Sibling = (props) => {
             {/* <label htmlFor={props.id}>Add As:</label> */}
             <select name={props.id} defaultValue="empty" onChange={onChangeHandler}>
                 <option value="empty" disabled>Add As..</option>
-                <option value="kids">Kid</option>
+                <option value="children">Kid</option>
                 <option value="parents">Parent</option>
                 <option value="siblings">Sibling</option>
                 <option value="spouse">Spouse</option>

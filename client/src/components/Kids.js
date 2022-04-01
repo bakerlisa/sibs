@@ -88,10 +88,6 @@ const Kids = (props) => {
     return(
         <div>
             {
-                kids.length >= 1 ? <h2 className={styled.kidsTitle}>What's this {kids.length} Kids! </h2> : ""
-            }
-            
-            {
                 kids.map((item,i) => {
                     return <div key={i} className={styled.kidsWrp}>
 

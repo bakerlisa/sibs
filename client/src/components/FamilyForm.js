@@ -89,7 +89,7 @@ const FamilyForm = props => {
             <ImageUploader />
 
             <form onSubmit={onSubmitHandlerWelcome} >
-                <h2>Edit Personal Info</h2>
+                <h2 className={styled.title}>Edit Personal Info</h2>
                 <div className="errWrp">
                     {
                         errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""

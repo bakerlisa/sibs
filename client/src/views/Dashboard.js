@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 import styled from '../css/ViewsCSS/Dashboard.module.css';
 
 const Dashboard = (props) => {
-    const { user, spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds } = useContext(UserContext)
+    const { user, spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds,stepKidsIds } = useContext(UserContext)
 
     return(
         <div className="smallContainer">
@@ -27,12 +27,29 @@ const Dashboard = (props) => {
             } 
 
             {/* if Children */}
+            {
+                kidsIds.length >= 1 ? <h2 className={styled.kidsTitle}>What's this  Kids! </h2> : ""
+            }
             <Kids />
             {
                 kidsIds.length === 0 ? "" : <>
                     <div className={styled.kids}>
                         {
                             kidsIds.map((item,i) => {
+                                return <Spouse key={i} id={item} />
+                            })
+                        }
+                    </div> 
+                </> 
+            }
+            {
+                stepKidsIds.length >= 1 ? <h3 className={styled.kidsTitle}>Step Kids</h3> : ""
+            }
+            {
+                stepKidsIds.length === 0 ? "" : <>
+                    <div className={styled.kids}>
+                        {
+                            stepKidsIds.map((item,i) => {
                                 return <Spouse key={i} id={item} />
                             })
                         }

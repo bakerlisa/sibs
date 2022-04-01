@@ -24,6 +24,7 @@ function App() {
   const [parentsIds,setParentsIds] = useState([])
   const [stepParentsIds,setStepParentsIds] = useState([])
   const [kidsIds,setKidsIds] = useState([])
+  const [stepKidsIds,setStepKidsIds] = useState([])
 
   useEffect(() => {
     if(userIDs){
@@ -34,6 +35,7 @@ function App() {
           setParentsIds(response.data.user.parents)
           setStepParentsIds(response.data.user.stepParents)
           setKidsIds(response.data.user.children)
+          setStepKidsIds(response.data.user.stepKids)
         })
     }
   }, [userIDs,user]);
@@ -47,7 +49,7 @@ function App() {
       <Switch>
         {/* LOGIN */}
         <Route exact path="/">
-          <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds }}>
+          <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds,stepKidsIds }}>
           {
             userIDs  ? <Dashboard /> : <Login />
           }
