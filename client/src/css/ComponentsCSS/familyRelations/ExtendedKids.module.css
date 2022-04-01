@@ -1,0 +1,11 @@
+.kidsWrp{width: 100%; text-align: left; margin-top: 25px; padding:0 0 0  115px; display: flex;align-items: center;justify-content: start;  flex-wrap: wrap; }
+.kidsWrp .kidsTitle{text-align: left; margin-bottom: 25px; padding-left: 150px; }
+.kidsWrp .imgCol{width: 150px;}
+.kidsWrp .img{border-radius: 50%; height:100px;}
+
+.kidsWrp .txtWrp{width: calc(100% - 400px); padding-left: 25px;}
+.kidsWrp .txtWrp .name{font-weight: 600; font-size: 18px; margin: 0;}
+
+.kidsWrp .actions{ width: 200px;}
+.kidsWrp .actions svg{margin: 0 10px;}
+.kidsWrp .actions svg:hover{cursor: pointer; color:var(--pink);}

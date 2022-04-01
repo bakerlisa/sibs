@@ -5,11 +5,11 @@ import axios from 'axios';
 import styled from '../css/ViewsCSS/Dashboard.module.css';
 
 import Child from '../components/familyRelations/Child';
-import Kids from '../components/familyRelations/Kids';
 import Parent from '../components/familyRelations/Parent';
 import Sibling from '../components/familyRelations/Sibling';
 import Spouse from '../components/familyRelations/Spouse';
 import StepParent from '../components/familyRelations/StepParent';
+import ExtendedKids from '../components/familyRelations/ExtendedKids';
 
 const ExtendedFamily = (props) => {
     
@@ -62,7 +62,7 @@ const ExtendedFamily = (props) => {
             }
             
             {/* Minor Kids */}
-            
+            <ExtendedKids />
             {
                 kidsIds.length === 0 ? "" : <>
                     {
