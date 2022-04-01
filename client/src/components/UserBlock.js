@@ -3,6 +3,8 @@ import UserContext from '../context/UserContext';
 import Sibling from './Sibling';
 import empty from '../img/empty.jpg';
 import styled from '../css/ComponentsCSS/UserBlock.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCakeCandles } from '@fortawesome/free-solid-svg-icons'
 
 const UserBlock = (props) => {
     const { userIDs } = useContext(UserContext)
@@ -26,12 +28,13 @@ const UserBlock = (props) => {
                 {
                     props.user.madian ? <span>({props.user.madian})</span> : ""
                 }
-                {props.user.lastName}</p><p className={styled.birthday}> {props.user.birthday}</p><Sibling id={props.user._id} />
+                {props.user.lastName}</p><p className={styled.birthday}><FontAwesomeIcon icon={faCakeCandles} /> {props.user.birthday}</p><Sibling id={props.user._id} />
                 </div>
         }
         </>
         
     )
 }
+
 
 export default UserBlock;

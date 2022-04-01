@@ -1,1 +1,7 @@
-.famWrp{padding-top: 50px; display: flex;align-items: center;justify-content: start;flex-wrap: wrap;}
+.famWrp{padding-top: 50px; display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
+
+/* searhc */
+.searchWrp{ max-width:600px; margin: 25px auto 0;}
+.searchWrp form{display: flex; align-items: center;justify-content: center;flex-wrap: wrap;}
+.searchWrp .input{width: calc(100% - 150px); padding: 15px;}
+.searchWrp .searchSubmit{width: 150px;  padding: 15px; background-color:var(--dk_red); color:var(--white); text-transform: uppercase;font-weight: 600; letter-spacing: 1px;font-size: 16px;}
