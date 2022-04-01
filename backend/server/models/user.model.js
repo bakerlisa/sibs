@@ -85,6 +85,10 @@ const UserSchema = new mongoose.Schema({
     map:{
         type: String,
         default:""
+    },
+    order:{
+        type: Number,
+        default: 1
     }
 },{timestamps:true});
 

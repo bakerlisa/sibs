@@ -16,7 +16,7 @@ const Find = (props) => {
     return(
         <div className="container">
             <h1>Address Book:</h1>
-            <h3>We know you'd like to lose them...but this page is for finding them</h3>
+            <h3 className={styled.subtitle}>We know you'd like to lose them...but this page is for finding them</h3>
 
             <div className={styled.searchWrp} >
                 <form>

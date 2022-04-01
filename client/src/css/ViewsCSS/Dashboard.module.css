@@ -1,7 +1,9 @@
 /* spouse */    
-h2{width: 100%; text-align: left;}
+h2{width: 100%; }
 h3{width: 100%; text-align: left; padding-left: 50px;}
+.subtitle{text-align: center;}
 .kidsTitle{padding-left: 100px;}
+.dashTitle{text-align: left;}
 .spouseWrp{display: flex; flex-wrap: wrap; align-items: start;justify-content: center;flex-wrap: wrap;}
 .kids{padding: 0 100px;}
 @media all and (max-width:1000px){

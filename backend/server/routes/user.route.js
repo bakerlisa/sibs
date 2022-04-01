@@ -18,5 +18,6 @@ module.exports = app => {
     app.patch('/api/update/user/stepParents/:id', UsersController.StepParentsLinkUser)
     app.patch('/api/update/user/kids/:id', UsersController.KidsLinkUser)
     app.patch('/api/update/user/stepKids/:id', UsersController.StepKidsLinkUser)
+    app.patch('/api/update/user/stepSibling/:id', UsersController.StepSiblingLinkUser)
 }
 

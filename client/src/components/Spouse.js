@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot,faPhone,faEnvelope,faCakeCandles,faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
-
 const Spouse = (props) => {
     const [partner,setPartner] = useState({})
 
@@ -17,7 +16,6 @@ const Spouse = (props) => {
     }, []);
 
     return(
-        
         <div className={styled.wrp}>
             {props.wrapper === "indent" ? <span></span>: ""} 
             <div className={styled.imgColumn} >

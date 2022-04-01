@@ -1,4 +1,5 @@
 .famWrp{padding-top: 50px; display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
+.subtitle{text-align: center;}
 
 /* searhc */
 .searchWrp{ max-width:600px; margin: 25px auto 0;}

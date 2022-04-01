@@ -113,6 +113,12 @@ module.exports.StepKidsLinkUser = (req,res) => {
     .then(spouseUser => res.json({ user: spouseUser}))
     .catch(err => res.status(400).json({ message: 'Person is already a stepKids', error: err }));
 }
+module.exports.StepSiblingLinkUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { stepSibling: req.body.stepSibling[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Person is already a stepSibling', error: err }));
+}
 
 // CREATE
 module.exports.createUser = (req,res) => {

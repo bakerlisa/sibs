@@ -64,6 +64,13 @@ const Sibling = (props) => {
             .catch(err => {
                 setDBError(err.response.data.message)
             });
+        }else  if(link === "stepSibling"){
+            axios.patch(`http://localhost:8000/api/update/user/stepSibling/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
         }
         
     }
