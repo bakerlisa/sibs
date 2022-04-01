@@ -59,6 +59,9 @@ const UserSchema = new mongoose.Schema({
     kids: {
         type: Array
     },
+    children:{
+        type: Array
+    },
     stepKids:{
         type:Array
     },

@@ -1,4 +1,5 @@
 .wrp{display: flex; align-items: center; justify-content: start; margin: 25px 0; width: 100%;}
+.wrp > span{width: 50px;}
 
 /* img */
 .imgColumn{width: 175px;}

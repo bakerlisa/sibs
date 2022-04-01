@@ -17,8 +17,10 @@ const Spouse = (props) => {
     }, []);
 
     return(
+        
         <div className={styled.wrp}>
-            <div className={styled.imgColumn}>
+            {props.wrapper === "indent" ? <span></span>: ""} 
+            <div className={styled.imgColumn} >
                 {
                     partner.image === 'empty.jpg' ? <img className={styled.img} src={empty} alt={partner.firstName} /> : <img className={styled.img} src={partner.image} alt={partner.firstName} />
                 }

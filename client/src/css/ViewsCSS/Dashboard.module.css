@@ -1,7 +1,8 @@
 /* spouse */    
-.spouseWrp h2{width: 100%; text-align-last: left;}
-.spouseWrp{display: flex;align-items: start;justify-content: center;flex-wrap: wrap;}
-
+h2{width: 100%; text-align-last: left;}
+h3{width: 100%; text-align-last: left; padding-left: 50px;}
+.spouseWrp{display: flex; flex-wrap: wrap; align-items: start;justify-content: center;flex-wrap: wrap;}
+.kids{padding: 0 100px;}
 @media all and (max-width:1000px){
     .spouseWrp{flex-direction: column;}
 }

@@ -11,7 +11,10 @@ const Sibling = (props) => {
     const [dbError,setDBError] = useState("")
     
     const onChangeHandler = (event) => {
+        console.log(event.target)
         setLink(event.target.value)
+        console.log(link)
+
         setForm({[event.target.value]: [event.target.name]})
         setFormError(true);
     }
@@ -26,13 +29,40 @@ const Sibling = (props) => {
             .catch(err => {
                 setDBError(err.response.data.message)
             });
+        } else  if(link === "siblings"){
+            axios.patch(`http://localhost:8000/api/update/user/siblings/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
+        }else  if(link === "parents"){
+            axios.patch(`http://localhost:8000/api/update/user/parents/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
+        }else  if(link === "stepParents"){
+            axios.patch(`http://localhost:8000/api/update/user/stepParents/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
+        }else  if(link === "kids"){
+            axios.patch(`http://localhost:8000/api/update/user/kids/${userIDs}`,form).then(response=>{
+                console.log(response.data.user)
+            })
+            .catch(err => {
+                setDBError(err.response.data.message)
+            });
         }
+        
     }
     return(
         <form className={styled.sibling} onSubmit={onSubmitHandler}>
-            {
-                dbError
-            }
+
             {/* <label htmlFor={props.id}>Add As:</label> */}
             <select name={props.id} defaultValue="empty" onChange={onChangeHandler}>
                 <option value="empty" disabled>Add As..</option>
@@ -47,7 +77,7 @@ const Sibling = (props) => {
 
 
             {
-                formError ?  <input type="submit" value="Add As" class="submitPink"/> :  <input type="submit" value="Add As" disabled />
+                formError ?  <input type="submit" value="Add As" className="submitPink"/> :  <input type="submit" value="Add As" disabled />
             }
         </form>
     )

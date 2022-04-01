@@ -75,16 +75,37 @@ module.exports.EditChildUser = (req,res) => {
 
 
 
-
-
-
-
 //FAMILY LINK
 module.exports.SpouseLinkUser = (req,res) => {
     User.findOneAndUpdate({ _id: req.params.id},
         { $addToSet: { spouse: req.body.spouse[0]  } })
     .then(spouseUser => res.json({ user: spouseUser}))
     .catch(err => res.status(400).json({ message: 'Person is already a spouse', error: err }));
+}
+
+module.exports.SiblingLinkUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { siblings: req.body.siblings[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Person is already a sibling', error: err }));
+}
+module.exports.ParentsLinkUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { parents: req.body.parents[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Person is already a parent', error: err }));
+}
+module.exports.StepParentsLinkUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { stepParents: req.body.stepParents[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Person is already a step parent', error: err }));
+}
+module.exports.KidsLinkUser = (req,res) => {
+    User.findOneAndUpdate({ _id: req.params.id},
+        { $addToSet: { children: req.body.children[0]  } })
+    .then(spouseUser => res.json({ user: spouseUser}))
+    .catch(err => res.status(400).json({ message: 'Person is already a children', error: err }));
 }
 
 // CREATE

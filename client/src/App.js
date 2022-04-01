@@ -20,12 +20,20 @@ function App() {
   const [user,setUser] = useState({});
   const userIDs = localStorage.getItem('userID');
   const [spouseIDs,setSpouseIds] = useState([])
+  const [siblingIds,setSiblingIds] = useState([])
+  const [parentsIds,setParentsIds] = useState([])
+  const [stepParentsIds,setStepParentsIds] = useState([])
+  const [kidsIds,setKidsIds] = useState([])
 
   useEffect(() => {
     if(userIDs){
       axios.get(`http://localhost:8000/api/user/${userIDs}`).then(response=>{
           setUser(response.data.user)
           setSpouseIds(response.data.user.spouse)
+          setSiblingIds(response.data.user.siblings)
+          setParentsIds(response.data.user.parents)
+          setStepParentsIds(response.data.user.stepParents)
+          setKidsIds(response.data.user.children)
         })
     }
   }, [userIDs,user]);
@@ -39,7 +47,7 @@ function App() {
       <Switch>
         {/* LOGIN */}
         <Route exact path="/">
-          <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs }}>
+          <UserContext.Provider value={{ user, setUser,userIDs,spouseIDs,siblingIds,parentsIds,stepParentsIds,kidsIds }}>
           {
             userIDs  ? <Dashboard /> : <Login />
           }
