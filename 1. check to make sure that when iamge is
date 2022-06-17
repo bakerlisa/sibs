@@ -1,4 +1,6 @@
-TO DO: 
+# ToDo List: 
+
+
 1. check to make sure that when iamge is updated and then we update other itmes it doesn't get overwritten
 2. filter the data on the find
 3. add children as objects in an array
